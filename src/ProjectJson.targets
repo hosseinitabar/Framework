@@ -1,0 +1,7 @@
+<Project>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.AspNetCore.Mvc.NewtonsoftJson" Version="3.1.12" />
+  </ItemGroup>
+
+</Project>

@@ -1,0 +1,15 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <AssemblyName>Holism.EntityFramework</AssemblyName>
+    <RootNamespace>Holism.EntityFramework</RootNamespace>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Sql\Sql.csproj" />
+  </ItemGroup>
+
+  <Import Project="$(HolismProjectsRoot)\Framework\ProjectEf.targets" />
+  <Import Project="$(HolismProjectsRoot)\Framework\ProjectReusable.targets" />
+
+</Project>

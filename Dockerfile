@@ -19,6 +19,15 @@
 FROM mcr.microsoft.com/dotnet/sdk:5.0 AS build
 COPY source dest
 
+
+RUN dotnet restore
+
+RUN dotnet build
+
+CMD dotnet $mainDll
+
+# https://github.com/dotnet/dotnet-docker/blob/main/samples/dotnetapp/Dockerfile
+
 # Todo: R&D about docker URL context
 # https://docs.docker.com/engine/reference/builder/#usage
 
@@ -27,3 +36,7 @@ COPY source dest
 # docker command builds an image from .NET SDK
 # docker builds a SQL Server Express container
 # docker gets Framework, Quality, Api, WebUi, and any other required dependency (or maybe I should publish Framework, Quality, Api, WebUi, etc to NuGet; or even publish only with one version => replace=true)
+
+# https://docs.docker.com/glossary/
+
+# https://docs.microsoft.com/en-us/windows-server/get-started/getting-started-with-nano-server

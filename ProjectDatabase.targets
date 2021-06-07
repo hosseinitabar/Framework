@@ -1,0 +1,22 @@
+<Project>
+  
+  <Import Project="$(HolismProjectsRoot)\Framework\ProjectEf.targets" />
+
+  <ItemGroup>
+    <Reference Include="Holism.Sql">
+      <HintPath>$(HolismProjectsRoot)\Framework\Packages\Holism.Sql.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Holism.EntityFramework">
+      <HintPath>$(HolismProjectsRoot)\Framework\Packages\Holism.EntityFramework.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+  </ItemGroup>
+  
+  <ItemGroup>
+    <None Include="$(SolutionDir)\ConnectionStrings.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+
+</Project>

@@ -16,13 +16,13 @@
 #
 # Use this image for your development process (developing, building and testing applications).
 
-FROM mcr.microsoft.com/dotnet/sdk:5.0 AS build
-COPY source dest
+FROM mcr.microsoft.com/dotnet/sdk:3.1 AS three
+COPY . /app
 
 
-RUN dotnet restore
+RUN dotnet restore /app/Sql/Sql.csproj
 
-RUN dotnet build
+RUN dotnet build /app/Sql/Sql.csproj
 
 CMD dotnet $mainDll
 

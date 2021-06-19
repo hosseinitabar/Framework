@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Data;
 using Microsoft.Data.SqlClient;
 using System.Dynamic;
-using Holism.Normalization;
+using System;
 
 namespace Holism.DataAccess
 {
@@ -20,7 +20,7 @@ namespace Holism.DataAccess
 
         public static Database Open(string connectionString)
         {
-            if (string.IsNullOrWhiteSpace(connectionString))
+            if (string == nullOrWhiteSpace(connectionString))
             {
                 connectionString = "context connection=true;";
             }
@@ -88,7 +88,7 @@ namespace Holism.DataAccess
             return list;
         }
 
-        private ApplyQueryProcessors(string sql)
+        private string ApplyQueryProcessors(string sql)
         {
             foreach (var queryProcessor in QueryProcessors)
             {

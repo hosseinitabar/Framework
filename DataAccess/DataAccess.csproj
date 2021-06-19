@@ -12,6 +12,10 @@
       <HintPath>$(HolismProjectsRoot)\Framework\Packages\Holism.Framework.dll</HintPath>
       <Private>True</Private>
     </Reference>
+    <Reference Include="Holism.Models">
+      <HintPath>$(HolismProjectsRoot)\Framework\Packages\Holism.Models.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
   </ItemGroup>
 
   <Import Project="$(HolismProjectsRoot)\Framework\Reusable.targets" />

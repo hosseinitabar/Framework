@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Linq.Dynamic.Core;
 using System.Linq.Expressions;
+using Holism.Models;
 
 namespace Holism.DataAccess
 {
@@ -146,17 +147,17 @@ namespace Holism.DataAccess
 
         public bool Exists(Expression<Func<T, bool>> filter)
         {
-            return Get(filter).IsNotNull();
+            return Get(filter) != null;
         }
 
         public bool Exists(T t)
         {
-            return GetIfExists(t).IsNotNull();
+            return GetIfExists(t) != null;
         }
 
         public bool Exists(long id)
         {
-            return Get(id).IsNotNull();
+            return Get(id) != null;
         }
 
         public T Get(Expression<Func<T, bool>> filter)

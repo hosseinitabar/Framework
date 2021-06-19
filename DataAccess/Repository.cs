@@ -8,6 +8,7 @@ using System.Data;
 using System.Dynamic;
 using System.Linq;
 using System.Transactions;
+using Holism.Models;
 
 namespace Holism.DataAccess
 {
@@ -31,7 +32,7 @@ namespace Holism.DataAccess
         public virtual void Delete(long id)
         {
             var entity = Get(id);
-            if (entity.IsNull())
+            if (entity == null)
             {
                 return;
             }
@@ -42,12 +43,12 @@ namespace Holism.DataAccess
 
         public virtual void Delete(T t)
         {
-            if (t.IsNull())
+            if (t == null)
             {
                 return;
             }
             var entity = GetIfExists(t);
-            if (entity.IsNotNull())
+            if (entity != null)
             {
                 var entry = context.Entry(entity);
                 entry.State = EntityState.Deleted;
@@ -83,7 +84,7 @@ namespace Holism.DataAccess
 
         public virtual T Create(T t)
         {
-            if (t.IsNull())
+            if (t == null)
             {
                 throw new ServerException($"{typeof(T).Name} is null");
             }
@@ -129,7 +130,7 @@ namespace Holism.DataAccess
         public T Upsert(T t)
         {
             T _temp = Get(ExistenceFilter(t));
-            if (_temp.IsNull())
+            if (_temp == null)
             {
                 if (t.Id > 0)
                 {

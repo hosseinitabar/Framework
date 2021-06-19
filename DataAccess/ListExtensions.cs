@@ -95,7 +95,7 @@ namespace Holism.DataAccess
 
         private static IQueryable<T> ApplySorts<T>(IQueryable<T> query, List<Sort> sorts)
         {
-            if (sorts.IsNull())
+            if (sorts == null)
             {
                 query = query.OrderBy("Id asc");
                 return query;
@@ -143,7 +143,7 @@ namespace Holism.DataAccess
                 return items;
             }
             PropertyInfo propertyInfo = typeof(T).GetProperties().FirstOrDefault(i => i.Name.ToLower() == filter.Property.ToLower());
-            if (propertyInfo.IsNull())
+            if (propertyInfo == null)
             {
                 return items;
             }
@@ -213,7 +213,7 @@ namespace Holism.DataAccess
             }
             catch (Exception ex)
             {
-                throw new ServerException($"{filter.Value} is not a valid value for {propertyInfo.PropertyType.Name}");
+                throw new ServerException($"{filter.Value} is not a valid value for {propertyInfo.PropertyType.Name}", ex);
             }
         }
 
@@ -288,7 +288,7 @@ namespace Holism.DataAccess
                 {
                     filter.Value = filter.Value.Trim();
                 }
-                if (filter.Values.IsNotNull())
+                if (filter.Values != null)
                 {
                     for (int i = 0; i < filter.Values.Count; i++)
                     {

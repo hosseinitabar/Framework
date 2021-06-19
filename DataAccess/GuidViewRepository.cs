@@ -5,7 +5,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 
-namespace Holism.EntityFramework
+namespace Holism.DataAccess
 {
     public class GuidViewRepository<T> : ViewRepository<T> where T : class, IGuidEntity, new()
     {

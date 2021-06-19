@@ -7,8 +7,8 @@
       <HintPath>$(HolismProjectsRoot)\Framework\Packages\Holism.Sql.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="Holism.EntityFramework">
-      <HintPath>$(HolismProjectsRoot)\Framework\Packages\Holism.EntityFramework.dll</HintPath>
+    <Reference Include="Holism.DataAccess">
+      <HintPath>$(HolismProjectsRoot)\Framework\Packages\Holism.DataAccess.dll</HintPath>
       <Private>True</Private>
     </Reference>
   </ItemGroup>

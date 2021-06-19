@@ -10,7 +10,7 @@ using System.Dynamic;
 using System.Linq;
 using System.Transactions;
 
-namespace Holism.EntityFramework
+namespace Holism.DataAccess
 {
     public abstract class Repository<T> : ViewRepository<T>, ICrud<T> where T : class, IEntity, new()
     {

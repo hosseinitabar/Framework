@@ -1,0 +1,17 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <AssemblyName>Holism.Framework</AssemblyName>
+    <RootNamespace>Holism.Framework</RootNamespace>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Humanizer" Version="2.8.26" />
+  </ItemGroup>
+
+  <Import Project="$(HolismProjectsRoot)\Framework\ProjectDotNet.targets" />
+  <Import Project="$(HolismProjectsRoot)\Framework\ProjectConfiguration.targets" />
+  <Import Project="$(HolismProjectsRoot)\Framework\ProjectJson.targets" />
+  <Import Project="$(HolismProjectsRoot)\Framework\ProjectReusable.targets" />
+
+</Project>

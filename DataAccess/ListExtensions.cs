@@ -7,7 +7,7 @@ using System.Text;
 using System.Reflection;
 using Holism.Framework.Extensions;
 
-namespace Holism.EntityFramework
+namespace Holism.DataAccess
 {
     public static class ListExtensions
     {

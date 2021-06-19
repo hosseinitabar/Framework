@@ -7,7 +7,7 @@ using System.Linq;
 using System.Linq.Dynamic.Core;
 using System.Linq.Expressions;
 
-namespace Holism.EntityFramework
+namespace Holism.DataAccess
 {
     public class ViewRepository<T> : IRead<T> where T : class, IEntity, new()
     {

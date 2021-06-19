@@ -3,7 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace Holism.EntityFramework
+namespace Holism.DataAccess
 {
     public static class DbContextExtensions
     {

@@ -7,7 +7,7 @@ using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 
-namespace Holism.EntityFramework
+namespace Holism.DataAccess
 {
     public class PersianInterceptor : DbCommandInterceptor
     {

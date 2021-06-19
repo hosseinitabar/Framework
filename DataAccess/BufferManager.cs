@@ -7,7 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Timers;
 
-namespace Holism.EntityFramework
+namespace Holism.DataAccess
 {
     public class BufferManager
     {

@@ -1,8 +1,8 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <AssemblyName>Holism.EntityFramework</AssemblyName>
-    <RootNamespace>Holism.EntityFramework</RootNamespace>
+    <AssemblyName>Holism.DataAccess</AssemblyName>
+    <RootNamespace>Holism.DataAccess</RootNamespace>
   </PropertyGroup>
 
   <ItemGroup>

@@ -1,4 +1,4 @@
-﻿namespace Holism.EntityFramework
+﻿namespace Holism.DataAccess
 {
     public interface IEntity
     {

@@ -6,7 +6,7 @@ using Microsoft.Data.SqlClient;
 using System.Text;
 using System.Text.RegularExpressions;
 
-namespace Holism.EntityFramework
+namespace Holism.DataAccess
 {
     public class SqlExceptionHelper
     {

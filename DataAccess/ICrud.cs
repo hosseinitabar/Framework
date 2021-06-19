@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace Holism.EntityFramework
+namespace Holism.DataAccess
 {
     public interface ICrud<T> : IRead<T> where T : IEntity, new()
     {

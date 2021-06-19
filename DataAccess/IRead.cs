@@ -5,7 +5,7 @@ using System.Linq;
 using System.Linq.Expressions;
 using System.Text;
 
-namespace Holism.EntityFramework
+namespace Holism.DataAccess
 {
     public interface IRead<T> where T : IEntity, new()
     {

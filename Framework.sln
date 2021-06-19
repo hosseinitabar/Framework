@@ -11,6 +11,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Normalization", "Normalizat
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Framework", "Framework\Framework.csproj", "{BFB5EBBC-1374-4F66-916B-509431D67715}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DataAccess", "DataAccess\DataAccess.csproj", "{74216383-32F2-4CF0-A3BA-E364FA51D3F6}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -72,5 +74,17 @@ Global
 		{BFB5EBBC-1374-4F66-916B-509431D67715}.Release|x64.Build.0 = Release|Any CPU
 		{BFB5EBBC-1374-4F66-916B-509431D67715}.Release|x86.ActiveCfg = Release|Any CPU
 		{BFB5EBBC-1374-4F66-916B-509431D67715}.Release|x86.Build.0 = Release|Any CPU
+		{74216383-32F2-4CF0-A3BA-E364FA51D3F6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{74216383-32F2-4CF0-A3BA-E364FA51D3F6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{74216383-32F2-4CF0-A3BA-E364FA51D3F6}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{74216383-32F2-4CF0-A3BA-E364FA51D3F6}.Debug|x64.Build.0 = Debug|Any CPU
+		{74216383-32F2-4CF0-A3BA-E364FA51D3F6}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{74216383-32F2-4CF0-A3BA-E364FA51D3F6}.Debug|x86.Build.0 = Debug|Any CPU
+		{74216383-32F2-4CF0-A3BA-E364FA51D3F6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{74216383-32F2-4CF0-A3BA-E364FA51D3F6}.Release|Any CPU.Build.0 = Release|Any CPU
+		{74216383-32F2-4CF0-A3BA-E364FA51D3F6}.Release|x64.ActiveCfg = Release|Any CPU
+		{74216383-32F2-4CF0-A3BA-E364FA51D3F6}.Release|x64.Build.0 = Release|Any CPU
+		{74216383-32F2-4CF0-A3BA-E364FA51D3F6}.Release|x86.ActiveCfg = Release|Any CPU
+		{74216383-32F2-4CF0-A3BA-E364FA51D3F6}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal

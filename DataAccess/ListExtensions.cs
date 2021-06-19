@@ -119,7 +119,6 @@ namespace Holism.DataAccess
                 return items;
             filters = GetValidFilters(filters);
             NormalizeFilters(filters);
-            TransformDateFilters(filters);
 
             foreach (var filter in filters)
             {

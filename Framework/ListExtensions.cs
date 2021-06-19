@@ -114,7 +114,7 @@ namespace Holism.Framework
         public static DataTable ToTable<T>(this List<T> items)
         {
             var table = typeof(T).ToTableDefinition();
-            if (items.IsNull() || items.Count == 0)
+            if (items == null || items.Count == 0)
             {
                 return table;
             }
@@ -133,7 +133,7 @@ namespace Holism.Framework
             foreach (DataColumn column in columns)
             {
                 var equivalentProperty = properties.SingleOrDefault(i => i.Name == column.ColumnName);
-                if (equivalentProperty.IsNull())
+                if (equivalentProperty == null)
                 {
                     continue;
                 }

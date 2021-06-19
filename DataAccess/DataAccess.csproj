@@ -7,6 +7,13 @@
     <RootNamespace>Holism.DataAccess</RootNamespace>
   </PropertyGroup>
 
+  <ItemGroup>
+    <Reference Include="Holism.Framework">
+      <HintPath>$(HolismProjectsRoot)\Framework\Packages\Holism.Framework.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+  </ItemGroup>
+
   <Import Project="$(HolismProjectsRoot)\Framework\Reusable.targets" />
 
 </Project>

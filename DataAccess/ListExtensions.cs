@@ -5,73 +5,73 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Reflection;
-using Holism.Framework.Extensions;
+using Holism.Framework;
 
 namespace Holism.DataAccess
 {
     public static class ListExtensions
     {
-        public static ListResult<T> ApplyListOptionsAndGetTotalCount<T>(this IQueryable<T> query, ListOptions listOptions)
+        public static ListResult<T> ApplyListParametersAndGetTotalCount<T>(this IQueryable<T> query, ListParameters listParameters)
         {
-            ListOptions.ProvideDefaultValues(listOptions);
+            ListParameters.ProvideDefaultValues(listParameters);
             var listResult = new ListResult<T>();
-            var totalQueryable = FilterAndSort(query, listOptions.Filters, listOptions.Sorts, listOptions.SortRandomly);
-            if (listOptions.ReturnAll)
+            var totalQueryable = FilterAndSort(query, listParameters.Filters, listParameters.Sorts, listParameters.SortRandomly);
+            if (listParameters.ReturnAll)
             {
                 listResult.Data = totalQueryable.ToList();
             }
             else
             {
-                listResult.Data = totalQueryable.Skip<T>((listOptions.PageNumber.Value - 1) * listOptions.PageSize.Value).Take<T>(listOptions.PageSize.Value).ToList();
+                listResult.Data = totalQueryable.Skip<T>((listParameters.PageNumber.Value - 1) * listParameters.PageSize.Value).Take<T>(listParameters.PageSize.Value).ToList();
             }
             listResult.TotalCount = totalQueryable.Count();
-            listResult.PageSize = listOptions.PageSize;
-            listResult.PageNumber = listOptions.PageNumber;
-            TransferMessages(listResult, listOptions);
+            listResult.PageSize = listParameters.PageSize;
+            listResult.PageNumber = listParameters.PageNumber;
+            TransferMessages(listResult, listParameters);
             return listResult;
         }
 
-        private static void TransferMessages<T>(ListResult<T> listResult, ListOptions listOptions)
+        private static void TransferMessages<T>(ListResult<T> listResult, ListParameters listParameters)
         {
-            foreach (KeyValuePair<string, object> item in listOptions.RelatedItems)
+            foreach (KeyValuePair<string, object> item in listParameters.RelatedItems)
             {
                 ExpandoObjectExtensions.AddProperty(listResult.RelatedItems, item.Key, item.Value);
             }
             if (Config.IsDeveloping)
             {
                 listResult.RelatedItems.EndedAt = DateTime.Now;
-                if (ExpandoObjectExtensions.Has(listOptions.RelatedItems, "StartedAt"))
+                if (ExpandoObjectExtensions.Has(listParameters.RelatedItems, "StartedAt"))
                 {
-                    DateTime startedAt = listOptions.RelatedItems.StartedAt;
+                    DateTime startedAt = listParameters.RelatedItems.StartedAt;
                     DateTime endedAt = listResult.RelatedItems.EndedAt;
                     listResult.RelatedItems.TimeInMilliseconds = endedAt.Subtract(startedAt).TotalMilliseconds;
                 }
             }
         }
 
-        public static ListResult<T> ApplyListOptions<T>(this IQueryable<T> query, ListOptions listOptions)
+        public static ListResult<T> ApplyListParameters<T>(this IQueryable<T> query, ListParameters listParameters)
         {
-            ListOptions.ProvideDefaultValues(listOptions);
+            ListParameters.ProvideDefaultValues(listParameters);
             var listResult = new ListResult<T>();
-            var totalQueryable = FilterAndSort(query, listOptions.Filters, listOptions.Sorts, listOptions.SortRandomly);
-            if (listOptions.ReturnAll)
+            var totalQueryable = FilterAndSort(query, listParameters.Filters, listParameters.Sorts, listParameters.SortRandomly);
+            if (listParameters.ReturnAll)
             {
                 listResult.Data = totalQueryable.ToList();
             }
             else
             {
-                listResult.Data = totalQueryable.Skip<T>((listOptions.PageNumber.Value - 1) * listOptions.PageSize.Value).Take<T>(listOptions.PageSize.Value).ToList();
+                listResult.Data = totalQueryable.Skip<T>((listParameters.PageNumber.Value - 1) * listParameters.PageSize.Value).Take<T>(listParameters.PageSize.Value).ToList();
             }
-            listResult.PageSize = listOptions.PageSize;
-            listResult.PageNumber = listOptions.PageNumber;
-            TransferMessages(listResult, listOptions);
+            listResult.PageSize = listParameters.PageSize;
+            listResult.PageNumber = listParameters.PageNumber;
+            TransferMessages(listResult, listParameters);
             return listResult;
         }
 
-        public static int GetTotalCount<T>(this IQueryable<T> query, ListOptions listOptions)
+        public static int GetTotalCount<T>(this IQueryable<T> query, ListParameters listParameters)
         {
-            ListOptions.ProvideDefaultValues(listOptions);
-            var totalQueryable = FilterAndSort(query, listOptions.Filters, listOptions.Sorts, listOptions.SortRandomly);
+            ListParameters.ProvideDefaultValues(listParameters);
+            var totalQueryable = FilterAndSort(query, listParameters.Filters, listParameters.Sorts, listParameters.SortRandomly);
             return totalQueryable.Count();
         }
 

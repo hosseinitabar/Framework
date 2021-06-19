@@ -1,6 +1,5 @@
 ﻿using EFCore.BulkExtensions;
 using Holism.Framework;
-using Holism.Framework.Extensions;
 using Microsoft.Data.SqlClient;
 using Microsoft.EntityFrameworkCore;
 using System;

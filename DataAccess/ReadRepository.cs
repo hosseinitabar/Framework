@@ -1,5 +1,4 @@
 ﻿using Holism.Framework;
-using Holism.Framework.Extensions;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
@@ -32,23 +31,23 @@ namespace Holism.DataAccess
             return All.Where(filter);
         }
 
-        public virtual ListResult<T> GetList(ListOptions listOptions)
+        public virtual ListResult<T> GetList(ListParameters listParameters)
         {
-            return GetList(All, listOptions);
+            return GetList(All, listParameters);
         }
 
-        public virtual ListResult<T> GetList(IQueryable<T> queryable, ListOptions listOptions)
+        public virtual ListResult<T> GetList(IQueryable<T> queryable, ListParameters listParameters)
         {
             try
             {
                 if (SkipTotalCount == true)
                 {
-                    var result = queryable.ApplyListOptions(listOptions);
+                    var result = queryable.ApplyListParameters(listParameters);
                     return result;
                 }
                 else
                 {
-                    var result = queryable.ApplyListOptionsAndGetTotalCount(listOptions);
+                    var result = queryable.ApplyListParametersAndGetTotalCount(listParameters);
                     return result;
                 }
             }
@@ -210,18 +209,18 @@ namespace Holism.DataAccess
             }
         }
 
-        public ListResult<T> Query(string query, ListOptions listOptions)
+        public ListResult<T> Query(string query, ListParameters listParameters)
         {
             try
             {
                 if (SkipTotalCount == true)
                 {
-                    var result = dbset.FromSqlRaw<T>(query).ApplyListOptions(listOptions);
+                    var result = dbset.FromSqlRaw<T>(query).ApplyListParameters(listParameters);
                     return result;
                 }
                 else
                 {
-                    var result = dbset.FromSqlRaw<T>(query).ApplyListOptionsAndGetTotalCount(listOptions);
+                    var result = dbset.FromSqlRaw<T>(query).ApplyListParametersAndGetTotalCount(listParameters);
                     return result;
                 }
             }

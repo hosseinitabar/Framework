@@ -11,7 +11,7 @@ namespace Holism.DataAccess
     {
         IQueryable<T> GetList(Expression<Func<T, bool>> filter);
 
-        ListResult<T> GetList(ListOptions listOptions);
+        ListResult<T> GetList(ListParameters listParameters);
 
         IQueryable<T> All { get; }
 

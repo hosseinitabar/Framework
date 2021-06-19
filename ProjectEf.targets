@@ -3,6 +3,13 @@
   <Import Project="$(NefcantoProjectsRoot)\Framework\Project.targets" />
 
   <ItemGroup>
+    <Reference Include="Holism.Models">
+      <HintPath>$(HolismProjectsRoot)\Framework\Packages\Holism.Models.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="3.1.12" />
     <PackageReference Include="System.Linq.Dynamic.Core" Version="1.2.8" />
 	<PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer.NetTopologySuite" Version="3.1.12" />

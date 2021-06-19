@@ -1,1 +1,1 @@
-# dotnet_infra
+dotnet build Framework.sln /nowarn:msb4011 /t:Framework

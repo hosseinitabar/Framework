@@ -5,6 +5,7 @@
     <RootNamespace>Holism.Models</RootNamespace>
   </PropertyGroup>
 
+  <Import Project="$(HolismProjectsRoot)\Framework\Project.targets" />
   <Import Project="$(HolismProjectsRoot)\Framework\ProjectReusable.targets" />
 
 </Project>

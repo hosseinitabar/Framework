@@ -6,7 +6,7 @@ using System.IO;
 using System.Linq;
 using System.Text;
 
-namespace Holism.Sql
+namespace Holism.DataAccess
 {
     public class HelperFunctions
     {

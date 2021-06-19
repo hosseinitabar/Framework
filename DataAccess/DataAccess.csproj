@@ -5,10 +5,6 @@
     <RootNamespace>Holism.DataAccess</RootNamespace>
   </PropertyGroup>
 
-  <ItemGroup>
-    <ProjectReference Include="..\Sql\Sql.csproj" />
-  </ItemGroup>
-
   <Import Project="$(HolismProjectsRoot)\Framework\ProjectEf.targets" />
   <Import Project="$(HolismProjectsRoot)\Framework\ProjectReusable.targets" />
 

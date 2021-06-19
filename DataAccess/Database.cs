@@ -5,7 +5,7 @@ using Microsoft.Data.SqlClient;
 using System.Dynamic;
 using Holism.Normalization;
 
-namespace Holism.Sql
+namespace Holism.DataAccess
 {
     public class Database
     {

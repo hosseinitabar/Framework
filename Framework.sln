@@ -11,8 +11,6 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Normalization", "Normalizat
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Framework", "Framework\Framework.csproj", "{BFB5EBBC-1374-4F66-916B-509431D67715}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Sql", "Sql\Sql.csproj", "{21BCDEE6-9A89-4E95-8025-F90681E3E44F}"
-EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -74,17 +72,5 @@ Global
 		{BFB5EBBC-1374-4F66-916B-509431D67715}.Release|x64.Build.0 = Release|Any CPU
 		{BFB5EBBC-1374-4F66-916B-509431D67715}.Release|x86.ActiveCfg = Release|Any CPU
 		{BFB5EBBC-1374-4F66-916B-509431D67715}.Release|x86.Build.0 = Release|Any CPU
-		{21BCDEE6-9A89-4E95-8025-F90681E3E44F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{21BCDEE6-9A89-4E95-8025-F90681E3E44F}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{21BCDEE6-9A89-4E95-8025-F90681E3E44F}.Debug|x64.ActiveCfg = Debug|Any CPU
-		{21BCDEE6-9A89-4E95-8025-F90681E3E44F}.Debug|x64.Build.0 = Debug|Any CPU
-		{21BCDEE6-9A89-4E95-8025-F90681E3E44F}.Debug|x86.ActiveCfg = Debug|Any CPU
-		{21BCDEE6-9A89-4E95-8025-F90681E3E44F}.Debug|x86.Build.0 = Debug|Any CPU
-		{21BCDEE6-9A89-4E95-8025-F90681E3E44F}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{21BCDEE6-9A89-4E95-8025-F90681E3E44F}.Release|Any CPU.Build.0 = Release|Any CPU
-		{21BCDEE6-9A89-4E95-8025-F90681E3E44F}.Release|x64.ActiveCfg = Release|Any CPU
-		{21BCDEE6-9A89-4E95-8025-F90681E3E44F}.Release|x64.Build.0 = Release|Any CPU
-		{21BCDEE6-9A89-4E95-8025-F90681E3E44F}.Release|x86.ActiveCfg = Release|Any CPU
-		{21BCDEE6-9A89-4E95-8025-F90681E3E44F}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal

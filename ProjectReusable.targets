@@ -1,7 +1,10 @@
 <Project>
   
   <Target Name="PostBuild" AfterTargets="PostBuildEvent">
-    <Exec Command="cp $(TargetDir)\$(TargetFileName) $(SolutionDir)\Packages\" ContinueOnError="true" />
+    <Exec Command="mkdir -p $(SolutionDir)Packages/" />
+    <Exec Command="echo $(TargetName)" />
+    <Exec Command="cp $(TargetDir)$(TargetFileName) $(SolutionDir)Packages/" ContinueOnError="true" />
+    <Exec Command="cp $(TargetDir)$(TargetName).pdb $(SolutionDir)Packages/" ContinueOnError="true" />
   </Target>
 
 </Project>

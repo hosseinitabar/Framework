@@ -1,13 +1,12 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
+  <Import Project="$(HolismProjectsRoot)\Framework\DotNet.targets" />
+  
   <PropertyGroup>
     <AssemblyName>Holism.Framework</AssemblyName>
     <RootNamespace>Holism.Framework</RootNamespace>
   </PropertyGroup>
 
-  <Import Project="$(HolismProjectsRoot)\Framework\ProjectDotNet.targets" />
-  <Import Project="$(HolismProjectsRoot)\Framework\NugetConfiguration.targets" />
-  <Import Project="$(HolismProjectsRoot)\Framework\NugetJson.targets" />
-  <Import Project="$(HolismProjectsRoot)\Framework\ProjectReusable.targets" />
+  <Import Project="$(HolismProjectsRoot)\Framework\Reusable.targets" />
 
 </Project>

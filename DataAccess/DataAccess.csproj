@@ -1,11 +1,12 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
+  <Import Project="$(HolismProjectsRoot)\Framework\DotNet.targets" />
+
   <PropertyGroup>
     <AssemblyName>Holism.DataAccess</AssemblyName>
     <RootNamespace>Holism.DataAccess</RootNamespace>
   </PropertyGroup>
 
-  <Import Project="$(HolismProjectsRoot)\Framework\ProjectEf.targets" />
-  <Import Project="$(HolismProjectsRoot)\Framework\ProjectReusable.targets" />
+  <Import Project="$(HolismProjectsRoot)\Framework\Reusable.targets" />
 
 </Project>

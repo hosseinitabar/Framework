@@ -1,24 +1,12 @@
 <Project Sdk="Microsoft.NET.Sdk">
+  
+  <Import Project="$(HolismProjectsRoot)\Framework\DotNet.targets" />
 
   <PropertyGroup>
     <AssemblyName>Holism.Normalization</AssemblyName>
     <RootNamespace>Holism.Normalization</RootNamespace>
   </PropertyGroup>
 
-  <ItemGroup>
-    <Reference Include="Holism.Framework">
-      <HintPath>$(HolismProjectsRoot)\Framework\Packages\Holism.Framework.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
-    <Reference Include="Holism.Validation">
-      <HintPath>$(HolismProjectsRoot)\Framework\Packages\Holism.Validation.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
-  </ItemGroup>
-
-  <Import Project="$(HolismProjectsRoot)\Framework\ProjectDotNet.targets" />
-  <Import Project="$(HolismProjectsRoot)\Framework\ProjectConfiguration.targets" />
-  <Import Project="$(HolismProjectsRoot)\Framework\ProjectJson.targets" />
-  <Import Project="$(HolismProjectsRoot)\Framework\ProjectReusable.targets" />
+  <Import Project="$(HolismProjectsRoot)\Framework\Reusable.targets" />
 
 </Project>

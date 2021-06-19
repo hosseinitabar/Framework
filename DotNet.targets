@@ -9,21 +9,6 @@
   </PropertyGroup>
 
   <Import Project="$(HolismProjectsRoot)\Framework\Nuget.targets" />
-
-  <ItemGroup>
-    <Reference Include="Holism.Framework">
-      <HintPath>$(HolismProjectsRoot)\Framework\Packages\Holism.Framework.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
-    <Reference Include="Holism.Validation">
-      <HintPath>$(HolismProjectsRoot)\Framework\Packages\Holism.Validation.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
-    <Reference Include="Holism.Normalization">
-      <HintPath>$(HolismProjectsRoot)\Framework\Packages\Holism.Normalization.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
-  </ItemGroup>
   
   <ItemGroup>
     <None Include="$(SolutionDir)\Settings.json">

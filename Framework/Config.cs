@@ -108,7 +108,7 @@ namespace Holism.Framework
         {
             InitializeConfiguration();
             string result = ConfigurationRoot[key];
-            if (result.IsNull())
+            if (result == null)
             {
                 throw new ServerException($"There is no app setting for {key} in Settings.json file, or in SettingsOverride.json file, or these files are not present at the base directory of execution path.");
             }
@@ -167,7 +167,7 @@ namespace Holism.Framework
         {
             InitializeConfiguration();
             var connectionString = ConfigurationRoot[name];
-            if (connectionString.IsNull())
+            if (connectionString == null)
             {
                 throw new ServerException($"No connection string with name {name} can be found. Please have a ConnectionStrings.json file and make it copy to output always, and make sure connection string key is present in it.");
             }

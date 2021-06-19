@@ -5,7 +5,6 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Reflection;
-using Holism.Framework;
 
 namespace Holism.DataAccess
 {

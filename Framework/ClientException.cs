@@ -8,7 +8,7 @@ namespace Holism.Framework
     {
         public string Code { get; set; }
 
-        public object Data { get; set; }
+        public new object Data { get; set; }
 
         public ClientException(string message)
             : base(message)

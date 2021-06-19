@@ -120,7 +120,7 @@ namespace Holism.DataAccess
                 return items;
             filters = GetValidFilters(filters);
             NormalizeFilters(filters);
-            TransformPersianDateFilters(filters);
+            TransformDateFilters(filters);
 
             foreach (var filter in filters)
             {
@@ -278,45 +278,6 @@ namespace Holism.DataAccess
                 items = items.Where(filter.Property + " " + filter.OperatorMathematicalNotation + " (@0)", date);
             }
             return items;
-        }
-
-        private static void TransformPersianDateFilters(List<Filter> filters)
-        {
-            var persianDateFilters = filters.Where(i => i.Property.StartsWith("persian") && i.Property.Contains("Date")).ToList();
-            var invalidDates = persianDateFilters.Where(i => !i.Value.IsPersianDate()).ToList();
-            if (invalidDates.Count > 0)
-            {
-                throw new BusinessException($"تاریخ {invalidDates[0].Property} صحیح نیست");
-            }
-            var rangeFilters = persianDateFilters.GroupBy(i => i.Property).Where(i => i.Count() > 1).ToList();
-            foreach (var rangeFilter in rangeFilters)
-            {
-                if (rangeFilter.Count() > 2)
-                {
-                    throw new BusinessException("Multiple date ranges are not supported for filtering");
-                }
-                var from = rangeFilter.FirstOrDefault(i => i.Operator == FilterOperator.GreaterThanOrEqual);
-                var to = rangeFilter.FirstOrDefault(i => i.Operator == FilterOperator.LessThan);
-                if (from.IsNotNull() && to.IsNotNull())
-                {
-                    var fromDate = PersianDateTime.Parse(from.Value);
-                    var toDate = PersianDateTime.Parse(to.Value);
-                    if (fromDate > toDate)
-                    {
-                        throw new BusinessException($"تاریخ انتها باید از ابتدا بزرگتر باشد. {rangeFilter.First().Property}");
-                    }
-                }
-            }
-            foreach (var persianDateFilter in persianDateFilters)
-            {
-                filters.Remove(persianDateFilter);
-                filters.Add(new Filter
-                {
-                    Property = persianDateFilter.Property.Replace("Persian", "").Replace("persian", ""),
-                    Operator = persianDateFilter.Operator,
-                    Value = PersianDateTime.Parse(persianDateFilter.Value).ToString()
-                });
-            }
         }
 
         private static void NormalizeFilters(List<Filter> filters)

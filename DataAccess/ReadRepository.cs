@@ -9,13 +9,13 @@ using System.Linq.Expressions;
 
 namespace Holism.DataAccess
 {
-    public class ViewRepository<T> : IRead<T> where T : class, IEntity, new()
+    public class ReadRepository<T> : IRead<T> where T : class, IEntity, new()
     {
         protected readonly DbContext context;
         protected readonly DbSet<T> dbset;
         protected bool? SkipTotalCount;
 
-        public ViewRepository(DbContext context)
+        public ReadRepository(DbContext context)
         {
             this.context = context;
             // todo: can we force non-usage of sa user here? We might throw an exception complaining that user sa should be disabled, and another user should be used, for the sake of security through obscurity and security in depth.
@@ -23,7 +23,7 @@ namespace Holism.DataAccess
             this.dbset = context.Set<T>();
         }
 
-        static ViewRepository()
+        static ReadRepository()
         {
         }
 

@@ -37,18 +37,18 @@ namespace Holism.DataAccess
             {
                 case 2601: // Cannot insert duplicate key row in object '%.*ls' with unique index '%.*ls'. The duplicate key value is %ls.
                 case 2627: // Violation of %ls constraint '%.*ls'. Cannot insert duplicate key in object '%.*ls'. The duplicate key value is %ls.
-                    return $"{typeName} تکراری است";
+                    return $"{typeName} is duplicate";
                 case 547:
                     if (ex.Message.Contains("FOREIGN KEY"))
                     {
                         var match = new Regex(@"(?<=foreign key constraint ""FK_)(.*)_Id_(.*)_Id", RegexOptions.IgnoreCase).Match(ex.Message);
                         var from = match.Groups[1].Value;
                         var to = match.Groups[2].Value;
-                        return $"خطای ارتباطی: از {from} به {to}";
+                        return $"relation error: from {from} to {to}";
                     }
-                    return "خطای پایگاه داده";
+                    return "db error";
                 default:
-                    return "خطای پایگاه داده";
+                    return "db error";
             }
         }
     }

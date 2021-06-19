@@ -17,14 +17,36 @@
 # Use this image for your development process (developing, building and testing applications).
 
 FROM mcr.microsoft.com/dotnet/sdk:3.1 AS three
-COPY . /app
 
+RUN apk update
+RUN apk add --no-cache git
+RUN apk add --upgrade unzip
+WORKDIR /HolismDotNet
+RUN git clone https://github.com/HolismDotNet/Framework
+RUN git clone https://github.com/HolismDotNet/Api 
+WORKDIR /temp
+RUN dotnet new console -n Everything
+WORKDIR /temp/Everything
+RUN dotnet add package morelinq -v 3.3.2
+RUN dotnet add package Hashids.net -v 1.3.0
+RUN dotnet add package Humanizer -v 2.8.26
+RUN dotnet add package Selenium.WebDriver -v 4.0.0-beta1
+RUN dotnet add package Selenium.Support -v 4.0.0-beta1
+RUN dotnet add package Selenium.WebDriver.ChromeDriver -v 88.0.4324.9600
+RUN dotnet add package Microsoft.Extensions.Configuration.Json -v 3.1.12
+RUN dotnet add package Microsoft.Extensions.Configuration.Binder -v 3.1.12
+RUN dotnet add package AngleSharp -v 0.14.0
+RUN dotnet add package Microsoft.EntityFrameworkCore.SqlServer -v 3.1.12
+RUN dotnet add package System.Linq.Dynamic.Core -v 1.2.8
+RUN dotnet add package Microsoft.EntityFrameworkCore.SqlServer.NetTopologySuite -v 3.1.12
+RUN dotnet add package EFCore.BulkExtensions -v 3.3.1
+RUN dotnet add package ClosedXML -v 0.95.4
+RUN dotnet add package Microsoft.AspNetCore.Mvc.NewtonsoftJson -v 3.1.12
+RUN dotnet add package System.Drawing.Common -v 4.7.2
+RUN dotnet add package Mono.Cecil -v 0.11.3
 
-RUN dotnet restore /app/Sql/Sql.csproj
-
-RUN dotnet build /app/Sql/Sql.csproj
-
-CMD dotnet $mainDll
+RUN dotnet restore
+RUN dotnet build
 
 # https://github.com/dotnet/dotnet-docker/blob/main/samples/dotnetapp/Dockerfile
 

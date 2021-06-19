@@ -1,0 +1,10 @@
+version: "3.9"
+services: 
+    api:
+        image: nefcanto/dotnet-dev
+        container_name: ${Package}DotNetApi
+        working_dir: /api
+        volumes: 
+            - .:/api
+        ports: 
+            - "5000:5000"

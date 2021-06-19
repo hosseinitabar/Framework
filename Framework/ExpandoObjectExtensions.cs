@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Dynamic;
 using System.Text;
 
-namespace Holism.Framework.Extensions
+namespace Holism.Framework
 {
     public static class ExpandoObjectExtensions
     {

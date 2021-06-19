@@ -94,6 +94,7 @@ namespace Holism.DataAccess
             {
                 sql = queryProcessor(sql);
             }
+            return sql;
         }
     }
 }

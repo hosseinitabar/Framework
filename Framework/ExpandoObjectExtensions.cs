@@ -39,7 +39,7 @@ namespace Holism.Framework.Extensions
             {
                 return dictionary[propertyName];
             }
-            throw new FrameworkException($"ExpandoObject {expandoObject.GetType().FullName} does not have property {propertyName}");
+            throw new ServerException($"ExpandoObject {expandoObject.GetType().FullName} does not have property {propertyName}");
         }
 
         public static ExpandoObject AddProperty(this ExpandoObject expandoObject, string propertyName, object propertyValue)

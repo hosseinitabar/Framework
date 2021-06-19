@@ -20,7 +20,7 @@ namespace Holism.DataAccess
 
         public static Database Open(string connectionString)
         {
-            if (string == nullOrWhiteSpace(connectionString))
+            if (connectionString.IsNothing())
             {
                 connectionString = "context connection=true;";
             }

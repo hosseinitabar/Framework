@@ -42,19 +42,15 @@ namespace Holism.Framework
         public static string TranslateToFriendlyMessage(Exception ex)
         {
             string result = "";
-            while (ex.IsNotNull())
+            while (ex != null)
             {
-                if (ex is FrameworkException || ex is BusinessException)
+                if (ex is ServerException || ex is ClientException)
                 {
                     return ex.Message;
                 }
                 else if (ex is FileNotFoundException)
                 {
                     return $"Fil {Path.GetFileNameWithoutExtension(((FileNotFoundException)ex).FileName)} is not found";
-                }
-                else if (!string.IsNullOrEmpty(ExceptionTranslator.Translate(ex.Message)))
-                {
-                    return ExceptionTranslator.Translate(ex.Message.ToLower());
                 }
                 if (result.IsSomething())
                 {
@@ -106,7 +102,8 @@ namespace Holism.Framework
             {
                 return "";
             }
-            var newStackTrace = stackTrace.ReplaceAll(@"^(\s*at\s*(System|Microsoft)+|-*\s*End|\s*at\s*lambda).*$", "", RegexOptions.Multiline).ReplaceAll(@"\n\n", "", RegexOptions.Multiline);
+            var newStackTrace = Regex.Replace(stackTrace ,@"^(\s*at\s*(System|Microsoft)+|-*\s*End|\s*at\s*lambda).*$", "", RegexOptions.Multiline);
+            newStackTrace = Regex.Replace(newStackTrace, @"\n\n", "", RegexOptions.Multiline);
             return newStackTrace;
         }
     }

@@ -71,7 +71,7 @@ namespace Holism.DataAccess
         {
             get
             {
-                var count = Holism.Sql.Database.Open(ConnectionString).Get($@"
+                var count = Holism.DataAccess.Database.Open(ConnectionString).Get($@"
                     select sum(row_count)
                     from sys.dm_db_partition_stats
                     where [object_id] = object_id('{TableName}')
@@ -89,7 +89,7 @@ namespace Holism.DataAccess
             }
             catch (Exception ex)
             {
-                Logger.Log(ex);
+                Logger.LogException(ex);
                 throw ex;
             }
         }
@@ -103,7 +103,7 @@ namespace Holism.DataAccess
             }
             catch (Exception ex)
             {
-                Logger.Log(ex);
+                Logger.LogException(ex);
                 throw ex;
             }
         }
@@ -117,7 +117,7 @@ namespace Holism.DataAccess
             }
             catch (Exception ex)
             {
-                Logger.Log(ex);
+                Logger.LogException(ex);
                 throw ex;
             }
         }
@@ -132,7 +132,7 @@ namespace Holism.DataAccess
             }
             catch (Exception ex)
             {
-                Logger.Log(ex);
+                Logger.LogException(ex);
                 throw ex;
             }
         }
@@ -205,7 +205,7 @@ namespace Holism.DataAccess
             }
             catch (Exception ex)
             {
-                Logger.Log(ex);
+                Logger.LogException(ex);
                 throw new ServerException($"Query method should return a record set that can be casted to type of {typeof(T).FullName}", ex);
             }
         }
@@ -227,7 +227,7 @@ namespace Holism.DataAccess
             }
             catch (Exception ex)
             {
-                Logger.Log(ex);
+                Logger.LogException(ex);
                 throw new ServerException($"Query method should return a record set that can be casted to type of {typeof(T).FullName}");
             }
         }

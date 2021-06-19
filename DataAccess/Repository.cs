@@ -21,14 +21,6 @@ namespace Holism.DataAccess
         {
         }
 
-        public void OnBufferFlushError(Action<object[]> handler)
-        {
-            lock (lockToken)
-            {
-                BufferManager.RegisterBufferFlushErrorHandler(BufferKey(), handler);
-            }
-        }
-
         public virtual void Delete(long id)
         {
             var entity = Get(id);
@@ -54,32 +46,6 @@ namespace Holism.DataAccess
                 entry.State = EntityState.Deleted;
                 context.SaveChanges();
             }
-        }
-
-        public virtual void BufferToFlush(T t)
-        {
-            lock (lockToken)
-            {
-                BufferManager.AddToBuffer(BufferKey(), t, FlushBuffer);
-            }
-        }
-
-        public void FlushBuffer()
-        {
-            var entities = BufferManager.Get(BufferKey()).Select(i => (T)i).ToList();
-            if (entities.Count == 0)
-            {
-                return;
-            }
-
-            BulkInsert(entities);
-
-            BufferManager.Empty(BufferKey());
-        }
-
-        public string BufferKey()
-        {
-            return typeof(T).FullName;
         }
 
         public virtual T Create(T t)
@@ -173,7 +139,7 @@ namespace Holism.DataAccess
             {
                 return;
             }
-            Sql.Database.Open(context.Database.GetDbConnection().ConnectionString).Run($"alter table {TableName} with check check constraint all");
+            Holism.DataAccess.Database.Open(context.Database.GetDbConnection().ConnectionString).Run($"alter table {TableName} with check check constraint all");
         }
 
         public void BulkDelete(List<T> items)
@@ -190,7 +156,7 @@ namespace Holism.DataAccess
             }
             catch (Exception ex)
             {
-                Logger.Log(ex);
+                Logger.LogException(ex);
                 Logger.LogError($"Error running query on database:\r\n{query}");
                 throw new ServerException($"Error running query on database:");
             }

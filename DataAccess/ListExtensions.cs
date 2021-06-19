@@ -171,7 +171,7 @@ namespace Holism.DataAccess
             else
             {
                 if (filter.Property.Contains(' ') || filter.Value.Contains(' '))
-                    throw new FrameworkException("Request is invalid");
+                    throw new ServerException("Request is invalid");
                 var filterClause = $"{filter.Property} {filter.OperatorMathematicalNotation} {filter.Value}";
                 items = items.Where(filterClause);
             }
@@ -181,7 +181,7 @@ namespace Holism.DataAccess
         private static IQueryable<T> FilterGuid<T>(this IQueryable<T> items, Filter filter)
         {
             if (filter.Operator != FilterOperator.Equal)
-                throw new FrameworkException("Filter operator is not valid");
+                throw new ServerException("Filter operator is not valid");
             Guid guid;
             if (!Guid.TryParse(filter.Value, out guid))
             {
@@ -195,7 +195,7 @@ namespace Holism.DataAccess
         private static IQueryable<T> FilterBoolean<T>(this IQueryable<T> items, Filter filter)
         {
             if (filter.Operator != FilterOperator.Equal)
-                throw new FrameworkException("Filter operator is not valid");
+                throw new ServerException("Filter operator is not valid");
             var filterClause = $"{filter.Property} = {filter.Value.ToBoolean()}";
             items = items.Where(filterClause);
             return items;
@@ -204,7 +204,7 @@ namespace Holism.DataAccess
         private static IQueryable<T> FilterEnum<T>(this IQueryable<T> items, PropertyInfo propertyInfo, Filter filter)
         {
             if (filter.Operator != FilterOperator.Equal)
-                throw new FrameworkException("Filter operator is not valid");
+                throw new ServerException("Filter operator is not valid");
             try
             {
                 var value = Enum.Parse(propertyInfo.PropertyType, filter.Value);
@@ -214,7 +214,7 @@ namespace Holism.DataAccess
             }
             catch (Exception ex)
             {
-                throw new FrameworkException($"{filter.Value} is not a valid value for {propertyInfo.PropertyType.Name}");
+                throw new ServerException($"{filter.Value} is not a valid value for {propertyInfo.PropertyType.Name}");
             }
         }
 

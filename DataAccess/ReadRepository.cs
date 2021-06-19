@@ -140,7 +140,7 @@ namespace Holism.DataAccess
         {
             if (typeof(IGuidEntity).IsAssignableFrom(typeof(T)))
             {
-                throw new FrameworkException($"Type {typeof(T).FullName} is not of type {typeof(IGuidEntity).FullName}. Thus a list of items based on a list of GUIDs can not be queried.");
+                throw new ServerException($"Type {typeof(T).FullName} is not of type {typeof(IGuidEntity).FullName}. Thus a list of items based on a list of GUIDs can not be queried.");
             }
         }
 
@@ -179,14 +179,14 @@ namespace Holism.DataAccess
 
         public virtual Expression<Func<T, bool>> ExistenceFilter(T t)
         {
-            throw new FrameworkException($"ExistenceFilter expression is not implemented for {typeof(T).Name}");
+            throw new ServerException($"ExistenceFilter expression is not implemented for {typeof(T).Name}");
         }
 
         public virtual Expression<Func<T, bool>> KeySelector
         {
             get
             {
-                throw new FrameworkException($"KeySelector expression is not implemented for {typeof(T).Name}");
+                throw new ServerException($"KeySelector expression is not implemented for {typeof(T).Name}");
             }
         }
 
@@ -205,7 +205,7 @@ namespace Holism.DataAccess
             catch (Exception ex)
             {
                 Logger.Log(ex);
-                throw new FrameworkException($"Query method should return a record set that can be casted to type of {typeof(T).FullName}", ex);
+                throw new ServerException($"Query method should return a record set that can be casted to type of {typeof(T).FullName}", ex);
             }
         }
 
@@ -227,7 +227,7 @@ namespace Holism.DataAccess
             catch (Exception ex)
             {
                 Logger.Log(ex);
-                throw new FrameworkException($"Query method should return a record set that can be casted to type of {typeof(T).FullName}");
+                throw new ServerException($"Query method should return a record set that can be casted to type of {typeof(T).FullName}");
             }
         }
 
@@ -314,7 +314,7 @@ namespace Holism.DataAccess
         {
             get
             {
-                throw new FrameworkException("Override TableName property");
+                throw new ServerException("Override TableName property");
             }
         }
     }

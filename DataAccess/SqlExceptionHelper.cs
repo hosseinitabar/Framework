@@ -27,7 +27,7 @@ namespace Holism.DataAccess
                 throw exception;
             }
             var message = GetMessage(sqlException, typeName);
-            throw new FrameworkException(message, sqlException);
+            throw new ServerException(message, sqlException);
         }
 
         private static string GetMessage(SqlException ex, string typeName)

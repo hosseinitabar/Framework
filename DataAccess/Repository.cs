@@ -85,7 +85,7 @@ namespace Holism.DataAccess
         {
             if (t.IsNull())
             {
-                throw new FrameworkException($"{typeof(T).Name} is null");
+                throw new ServerException($"{typeof(T).Name} is null");
             }
             try
             {
@@ -133,7 +133,7 @@ namespace Holism.DataAccess
             {
                 if (t.Id > 0)
                 {
-                    throw new FrameworkException("Trying to upsert an item that doesn't exist, and providing an Id for it have conflic with each other. This scenario might happen in one-to-one relationships. Please drop the Id for the item to be created, or change the Id and make sure that it already exists.");
+                    throw new ServerException("Trying to upsert an item that doesn't exist, and providing an Id for it have conflic with each other. This scenario might happen in one-to-one relationships. Please drop the Id for the item to be created, or change the Id and make sure that it already exists.");
                 }
                 var model = Create(t);
                 dynamic relatedItems = new ExpandoObject();
@@ -191,7 +191,7 @@ namespace Holism.DataAccess
             {
                 Logger.Log(ex);
                 Logger.LogError($"Error running query on database:\r\n{query}");
-                throw new FrameworkException($"Error running query on database:");
+                throw new ServerException($"Error running query on database:");
             }
         }
     }

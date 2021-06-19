@@ -47,7 +47,7 @@ namespace Holism.Framework
 
         public void AddFilter(Filter filter)
         {
-            if (Filters.IsNull())
+            if (Filters == null)
             {
                 Filters = new List<Filter>();
             }
@@ -123,7 +123,7 @@ namespace Holism.Framework
 
         public void AddSort(Sort sort)
         {
-            if (Sorts.IsNull())
+            if (Sorts == null)
             {
                 Sorts = new List<Sort>();
             }

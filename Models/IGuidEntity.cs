@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Holism.DataAccess
+namespace Holism.Models
 {
     public interface IGuidEntity : IEntity
     {

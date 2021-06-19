@@ -1,7 +1,10 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFramework>net5.0</TargetFramework>
+    <AssemblyName>Holism.Models</AssemblyName>
+    <RootNamespace>Holism.Models</RootNamespace>
   </PropertyGroup>
+
+  <Import Project="$(HolismProjectsRoot)\Framework\ProjectReusable.targets" />
 
 </Project>

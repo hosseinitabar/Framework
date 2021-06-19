@@ -1,4 +1,6 @@
 <Project>
+
+  <Import Project="$(HolismProjectsRoot)\Framework\Project.targets" />
   
   <Target Name="PostBuild" AfterTargets="PostBuildEvent">
     <Exec Command="mkdir -p $(SolutionDir)Packages/" />

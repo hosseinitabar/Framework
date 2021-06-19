@@ -1,0 +1,20 @@
+version: "3.9"
+services: 
+    api:
+        image: mcr.microsoft.com/mssql/server:2017-latest-ubuntu
+        container_name: ${Package}Sql
+        working_dir: /api
+        environment: 
+            - HolismProjectsRoot=/HolismDotNet
+        volumes: 
+            - /HolismDotNet/Framework:/HolismDotNet/Framework
+            - /HolismDotNet/Api:/HolismDotNet/Api
+            - .:/api
+        ports: 
+            - "5000:5000"
+        command: >
+            sh -c
+            "
+            cd /temp
+            && tail -f /dev/null
+            "

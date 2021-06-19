@@ -2,6 +2,7 @@ version: "3.9"
 services: 
     api:
         image: nefcanto/dotnet-dev
+        restart: always
         container_name: ${Package}DotNetApi
         working_dir: /api
         environment: 
@@ -17,4 +18,19 @@ services:
             "
             cd /temp
             && tail -f /dev/null
+            "
+    sql:
+        image: mcr.microsoft.com/mssql/server:2017-latest-ubuntu
+        restart: always
+        container_name: ${Package}Sql
+        environment: 
+            - ACCEPT_EULA=Y
+            - SA_PASSWORD=lksU2o412f7tBj58t07B
+            - MSSQL_PID=Express
+        ports:
+            - 1433:1433
+        command: >
+            sh -c
+            "
+            tail -f /dev/null
             "

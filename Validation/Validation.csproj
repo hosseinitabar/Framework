@@ -1,15 +1,23 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
+  <Import Project="$(HolismProjectsRoot)\Framework\ProjectDotNet.targets" />
+
   <PropertyGroup>
-    <AssemblyName>Holism.Framework</AssemblyName>
-    <RootNamespace>Holism.Framework</RootNamespace>
+    <AssemblyName>Holism.Validation</AssemblyName>
+    <RootNamespace>Holism.Validation</RootNamespace>
   </PropertyGroup>
+
+  <ItemGroup>
+    <Reference Include="Holism.Framework">
+      <HintPath>$(HolismProjectsRoot)\Framework\Packages\Holism.Framework.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+  </ItemGroup>
 
   <ItemGroup>
     <PackageReference Include="Humanizer" Version="2.8.26" />
   </ItemGroup>
 
-  <Import Project="$(HolismProjectsRoot)\Framework\ProjectDotNet.targets" />
   <Import Project="$(HolismProjectsRoot)\Framework\ProjectConfiguration.targets" />
   <Import Project="$(HolismProjectsRoot)\Framework\ProjectJson.targets" />
   <Import Project="$(HolismProjectsRoot)\Framework\ProjectReusable.targets" />

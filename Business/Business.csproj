@@ -1,0 +1,27 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <Import Project="$(HolismProjectsRoot)\Framework\DotNet.targets" />
+
+  <PropertyGroup>
+    <AssemblyName>Holism.Business</AssemblyName>
+    <RootNamespace>Holism.Business</RootNamespace>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Reference Include="Holism.Framework">
+      <HintPath>$(HolismProjectsRoot)\Framework\Packages\Holism.Framework.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Holism.Models">
+      <HintPath>$(HolismProjectsRoot)\Framework\Packages\Holism.Models.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Holism.DataAccess">
+      <HintPath>$(HolismProjectsRoot)\Framework\Packages\Holism.DataAccess.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+  </ItemGroup>
+
+  <Import Project="$(HolismProjectsRoot)\Framework\Reusable.targets" />
+
+</Project>

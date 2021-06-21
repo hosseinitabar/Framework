@@ -1,10 +1,21 @@
 using Microsoft.AspNetCore.Authorization;
+using Holism.Framework;
+using Holism.Validation;
+using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Mvc;
+using System;
+using System.Collections.Generic;
+using System.Dynamic;
+using System.Linq;
+using System.Net;
+using System.Reflection;
+using System.Security.Claims;
 
 namespace Holism.Api.Controllers
 {
     // [Authorize(Policy = "HasRole")]
     // [Authorize]
-    public class DefaultController : GeneralController
+    public class DefaultController : Controller
     {
         public static Func<long, Guid> UserGuidProvider;
 

@@ -28,46 +28,6 @@ namespace Holism.Api.Controllers
         }
 
         [HttpGet]
-        public object Error()
-        {
-            throw new FrameworkException("خطا رخ داده دوست عزیز");
-        }
-
-        [HttpGet]
-        public IActionResult DateTime()
-        {
-            var now = System.DateTime.Now;
-            var result = $"{now.GetPersianDayOfWeekName()} {now.ToPersianDate()} {now.ToString("HH:mm")}";
-            return OkJson(result);
-        }
-
-        [HttpGet]
-        public IActionResult PersianTodayDate()
-        {
-            var now = System.DateTime.Now;
-            var persianDate = now.ToPersianDate();
-            return OkJson(persianDate);
-        }
-
-        [HttpGet]
-        public IActionResult TestGet(string value)
-        {
-            return OkJson(value);
-        }
-
-        [HttpPost]
-        public TestModel TestPost([FromBody] TestModel testModel)
-        {
-            return testModel;
-        }
-
-        [HttpPost]
-        public IActionResult PostFile(IFormFile file)
-        {
-            return OkJson(file?.Length.ToString());
-        }
-
-        [HttpGet]
         public object ControllersAndActions()
         {
             if (!Config.IsDeveloping)

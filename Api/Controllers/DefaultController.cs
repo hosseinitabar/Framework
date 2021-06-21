@@ -6,5 +6,138 @@ namespace Holism.Api.Controllers
     // [Authorize]
     public class DefaultController : GeneralController
     {
+        public static Func<long, Guid> UserGuidProvider;
+
+        public static JavaScriptResult Enums(HttpRequest request, Type type)
+        {
+            var result = EnumExtractor.Extract(type);
+            return new JavaScriptResult(result);
+        }
+
+        public static JavaScriptResult Enums(HttpRequest request, List<Type> types)
+        {
+            var result = EnumExtractor.Extract(types);
+            return new JavaScriptResult(result);
+        }
+
+        public IActionResult OkJson(string message = null, object data = null, string code = null)
+        {
+            message = message ?? "Done";
+            return JsonMessage(message, MessageType.Success, data, code);
+        }
+
+        public ActionResult ErrorJson(string message, object data = null, string code = null)
+        {
+            return JsonMessage(message, MessageType.Error, data, code);
+        }
+
+        private ActionResult JsonMessage(string message, MessageType messageType, object data = null, string code = null)
+        {
+            dynamic @object = new ExpandoObject();
+            @object.Type = messageType.ToString();
+            @object.Message = message;
+            if (data.IsNotNull())
+            {
+                @object.Data = data;
+            }
+            if (code.IsSomething())
+            {
+                @object.Code = code;
+            }
+            var jsonSerializerSettings = new JsonSerializerSettings
+            {
+                ContractResolver = new CamelCasePropertyNamesContractResolver()
+            };
+            var result = new JsonResult(@object, jsonSerializerSettings);
+            result.StatusCode = (int)HttpStatusCode.OK;
+            return result;
+        }
+
+        public string GetParameter(string name)
+        {
+            var parameter = Request.Query[name];
+            if (parameter.Count > 0)
+            {
+                return parameter.First();
+            }
+            throw new BusinessException($"{name} doesn't exist in query string parameters");
+        }
+
+        public string GetParameterOrNull(string name)
+        {
+            var parameter = Request.Query[name];
+            if (parameter.Count > 0)
+            {
+                return parameter.First();
+            }
+            return null;
+        }
+
+        public T Extract<T>() where T : class, new()
+        {
+            var instance = new T();
+            var properties = instance.GetType().GetProperties();
+            foreach (var property in properties)
+            {
+                ExtractProperty(instance, property);
+            }
+            return instance;
+        }
+
+        private void ExtractProperty(object instance, PropertyInfo property)
+        {
+            var values = HttpContext.Request.Form[property.Name];
+            if (values.Count > 0)
+            {
+                if (property.PropertyType.Name == typeof(long).Name || property.PropertyType.FullName == typeof(long?).FullName)
+                {
+                    property.SetValue(instance, Convert.ToInt64(values[0]));
+                }
+                else if (property.PropertyType.Name == typeof(int).Name || property.PropertyType.FullName == typeof(int?).FullName)
+                {
+                    property.SetValue(instance, Convert.ToInt32(values[0]));
+                }
+                else if (property.PropertyType.Name == typeof(Guid).Name || property.PropertyType.FullName == typeof(Guid?).FullName)
+                {
+                    var guid = values[0];
+                    if (guid.IsNonEmptyGuid())
+                    {
+                        property.SetValue(instance, Guid.Parse(values[0]));
+                    }
+                    else
+                    {
+                        Logger.LogWarning($"Property {property.PropertyType.Name} of model {instance.GetType().FullName} requires a Guid value, but in HTTP request we received {guid}.");
+                    }
+                }
+                else if (property.PropertyType.Name == typeof(string).Name)
+                {
+                    property.SetValue(instance, values[0]);
+                }
+            }
+        }
+
+        public long UserId
+        {
+            get
+            {
+                var id = User.FindFirst(ClaimTypes.NameIdentifier).Value.ToLong();
+                return id;
+            }
+        }
+
+        public Guid UserGuid
+        {
+            get
+            {
+                var guid = UserGuidProvider?.Invoke(UserId);
+                return guid.Value;
+            }
+        }
+
+        [HttpGet]
+        public IActionResult CheckAuthenticationToken()
+        {
+            return OkJson();
+        }
     }
 }

@@ -3,8 +3,8 @@
   <Import Project="$(HolismProjectsRoot)\Framework\DotNet.targets" />
 
   <PropertyGroup>
-    <AssemblyName>Holism.Business</AssemblyName>
-    <RootNamespace>Holism.Business</RootNamespace>
+    <AssemblyName>Holism.Api</AssemblyName>
+    <RootNamespace>Holism.Api</RootNamespace>
   </PropertyGroup>
 
   <ItemGroup>

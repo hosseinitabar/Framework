@@ -93,7 +93,8 @@ namespace Holism.Api
             {
                 options.Conventions.Add(new ReferenceTypeBodyJsonBindingConvention());
                 options.Filters.Add(new ModelChecker());
-            }).AddJsonOptions(options => JsonHelper.Options);
+            });
+            //.AddJsonOptions(JsonHelper.Options);
         }
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)

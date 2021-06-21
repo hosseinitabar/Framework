@@ -19,7 +19,7 @@ namespace Holism.Api
             }
             var errors = context.ModelState.Values.SelectMany(i => i.Errors).Where(i => i.Exception != null).Select(i => i.Exception).Select(i => i.Message).ToList();
             errors.AddRange(context.ModelState.Values.SelectMany(i => i.Errors).Where(i => i.Exception == null).Select(i => i.ErrorMessage).ToList());
-            throw new BusinessException(errors.Merge());
+            throw new ClientException(errors.Merge());
         }
     }
 }

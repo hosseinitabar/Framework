@@ -21,7 +21,7 @@ namespace Holism.Api
             {
                 response.Code = ((ClientException)exception).Code;
             }
-            if (exception is ClientException && ((ClientException)exception).Data.IsNotNull())
+            if (exception is ClientException && ((ClientException)exception).Data != null)
             {
                 response.Data = ((ClientException)exception).Data;
             }

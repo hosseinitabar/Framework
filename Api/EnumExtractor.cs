@@ -14,11 +14,11 @@ namespace Holism.Api
             var result = @"var enums=enums||{};";
             foreach (var @enum in enums)
             {
-                result += $"enums.{@enum.Name.ToCamelCase()}={{}};";
+                result += $"enums.{@enum.Name.Camelize()}={{}};";
                 var names = @enum.GetEnumNames();
                 foreach (var name in names)
                 {
-                    result += $"enums.{@enum.Name.ToCamelCase()}.{name.ToCamelCase()}={{value:{(int)Enum.Parse(@enum, name)},key:'{name.ToCamelCase()}',translation:'{string.Empty}'}};";
+                    result += $"enums.{@enum.Name.Camelize()}.{name.Camelize()}={{value:{(int)Enum.Parse(@enum, name)},key:'{name.Camelize()}',translation:'{string.Empty}'}};";
                 }
             }
             //result += "Object.freeze(enums);Object.seal(enums);";

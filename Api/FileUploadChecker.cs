@@ -28,7 +28,7 @@ namespace Holism.Api
         {
             if (request.Form == null || request.Form.Files.Count == 0)
             {
-                throw new FrameworkException("No file is uploaded in HTTP request");
+                throw new ServerException("No file is uploaded in HTTP request");
             }
         }
 
@@ -38,7 +38,7 @@ namespace Holism.Api
             var file = request.Form.Files.FirstOrDefault(i => i.Name == parameterName);
             if (file == null)
             {
-                throw new FrameworkException($"Parameter name, and form field name should match for binding to happen. You've named your parameter {parameterName}, but file is uploaded with the name {request.Form.Files[0].Name}.");
+                throw new ServerException($"Parameter name, and form field name should match for binding to happen. You've named your parameter {parameterName}, but file is uploaded with the name {request.Form.Files[0].Name}.");
             }
         }
     }

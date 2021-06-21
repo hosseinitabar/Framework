@@ -1,7 +1,6 @@
 using Holism.Business;
 using Holism.DataAccess;
 using Holism.Models;
-using Holism.Excel;
 using Holism.Framework;
 using Microsoft.AspNetCore.Mvc;
 using System;
@@ -43,7 +42,7 @@ namespace Holism.Api.Controllers
         {
             if (HasHugeDataAndNeedsFilteringForExport && !listParameters.HasFilters)
             {
-                throw new BusinessException("لطفا ابتدا فیلتر اعمال کنید");
+                throw new ClientException("لطفا ابتدا فیلتر اعمال کنید");
             }
             ListParametersAugmenter?.Invoke(listParameters);
             listParameters.ReturnAll = true;

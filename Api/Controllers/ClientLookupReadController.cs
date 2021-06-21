@@ -10,7 +10,7 @@ namespace Holism.Api.Controllers
         [HttpGet]
         public List<T> All()
         {
-            return TBusiness.GetAll();
+            return ReadBusiness.GetAll();
         }
     }
 }

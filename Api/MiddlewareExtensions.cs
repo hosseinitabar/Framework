@@ -26,7 +26,7 @@ namespace Holism.Api
             var exception = context.Features.Get<IExceptionHandlerFeature>().Error;
             if (exception.GetType().FullName != typeof(ClientException).FullName)
             {
-                Logger.Log(exception);
+                Logger.LogException(exception);
             }
             dynamic response = new ExpandoObject();
             response.Type = MessageType.Error.ToString();
@@ -36,7 +36,7 @@ namespace Holism.Api
             {
                 response.Code = ((ClientException)exception).Code;
             }
-            if (exception is ClientException && ((ClientException)exception).Data.IsNotNull())
+            if (exception is ClientException && ((ClientException)exception).Data != null)
             {
                 response.Data = ((ClientException)exception).Data;
             }

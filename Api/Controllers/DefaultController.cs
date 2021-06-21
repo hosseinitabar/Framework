@@ -47,7 +47,7 @@ namespace Holism.Api.Controllers
             dynamic @object = new ExpandoObject();
             @object.Type = messageType.ToString();
             @object.Message = message;
-            if (data.IsNotNull())
+            if (data != null)
             {
                 @object.Data = data;
             }
@@ -71,7 +71,7 @@ namespace Holism.Api.Controllers
             {
                 return parameter.First();
             }
-            throw new BusinessException($"{name} doesn't exist in query string parameters");
+            throw new ClientException($"{name} doesn't exist in query string parameters");
         }
 
         public string GetParameterOrNull(string name)

@@ -57,7 +57,7 @@
 //             {
 //                 var @object = (JObject)token;
 //                 var relatedItemsProperty = @object.Properties().FirstOrDefault(i => i.Name.ToLower() == "RelatedItems".ToLower());
-//                 if (relatedItemsProperty.IsNotNull())
+//                 if (relatedItemsProperty != null)
 //                 {
 //                     var relatedItems = @object[relatedItemsProperty.Name];
 //                     @object.Remove(relatedItemsProperty.Name);

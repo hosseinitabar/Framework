@@ -10,6 +10,7 @@ using System.Security.Cryptography;
 using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading;
+using System.Text.Json;
 
 namespace Holism.Framework
 {
@@ -63,6 +64,16 @@ namespace Holism.Framework
             decimal result = 0;
             decimal.TryParse(text, out result);
             return result;
+        }
+
+        public static object Deserialize(this string json)
+        {
+            return JsonSerializer.Deserialize(json, typeof(object), JsonHelper.Options);
+        }
+
+        public static T Deserialize<T>(this string json)
+        {
+            return JsonSerializer.Deserialize<T>(json, JsonHelper.Options);
         }
     }
 }

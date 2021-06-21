@@ -3,7 +3,9 @@ using System.Collections.Generic;
 using System.Dynamic;
 using System.Linq;
 using System.Reflection;
+using System.Text.Json;
 using System.Text;
+using Holism.Framework;
 
 namespace Holism.Framework
 {
@@ -17,26 +19,26 @@ namespace Holism.Framework
             return decimal.TryParse(obj.ToString(), out temp);
         }
 
-        // public static object Clone(this object @object)
-        // {
-        //     var serialized = @object.Serialize();
-        //     var copy = serialized.Deserialize();
-        //     return copy;
-        // }
+        public static object Clone(this object @object)
+        {
+            var serialized = @object.Serialize();
+            var copy = serialized.Deserialize();
+            return copy;
+        }
 
-        // public static T Clone<T>(this T t)
-        // {
-        //     var serialized = t.Serialize();
-        //     var copy = serialized.Deserialize<T>();
-        //     return copy;
-        // }
+        public static T Clone<T>(this T t)
+        {
+            var serialized = t.Serialize();
+            var copy = serialized.Deserialize<T>();
+            return copy;
+        }
 
-        // public static T CastTo<T>(this object @object)
-        // {
-        //     var serialized = @object.Serialize();
-        //     var copy = serialized.Deserialize<T>();
-        //     return copy;
-        // }
+        public static T CastTo<T>(this object @object)
+        {
+            var serialized = @object.Serialize();
+            var copy = serialized.Deserialize<T>();
+            return copy;
+        }
 
         public static T GetNewValues<T>(this T target, T source, params string[] exludedProperties)
         {
@@ -83,16 +85,10 @@ namespace Holism.Framework
             return (ExpandoObject)expando;
         }
 
-        // public static string Serialize(this object @object, Casing casing = Casing.PascalCase)
-        // {
-        //     if (casing == Casing.CamelCase)
-        //     {
-        //         var serializerSettings = new SerializerSettings();
-        //         serializerSettings.ContractResolver = new CamelCasePropertyNamesContractResolver();
-        //         return JsonConvert.SerializeObject(@object, serializerSettings);
-        //     }
-        //     return JsonConvert.SerializeObject(@object);
-        // }
+        public static string Serialize(this object @object)
+        {
+            return JsonSerializer.Serialize(@object, JsonHelper.Options);
+        }
 
         public static object Random(object[] objects)
         {

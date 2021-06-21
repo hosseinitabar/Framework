@@ -55,11 +55,7 @@ namespace Holism.Api.Controllers
             {
                 @object.Code = code;
             }
-            var jsonSerializerSettings = new JsonSerializerSettings
-            {
-                ContractResolver = new CamelCasePropertyNamesContractResolver()
-            };
-            var result = new JsonResult(@object, jsonSerializerSettings);
+        var result = new JsonResult(@object, JsonHelper.Options);
             result.StatusCode = (int)HttpStatusCode.OK;
             return result;
         }

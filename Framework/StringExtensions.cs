@@ -75,5 +75,32 @@ namespace Holism.Framework
         {
             return JsonSerializer.Deserialize<T>(json, JsonHelper.Options);
         }
+
+        public static List<T> SplitCsv<T>(this string text)
+        {
+            List<T> result = new List<T>();
+            if (text.IsNothing())
+            {
+                return result;
+            }
+            List<string> tokens = text.Split(',').Select(i => i.Trim()).ToList();
+            tokens.ForEach(t =>
+            {
+                try
+                {
+                    result.Add((T)Convert.ChangeType(t, typeof(T)));
+                }
+                catch
+                {
+                    Logger.LogError($"Error in converting item {t} to type {typeof(T)} in SplitCsv<T>() method");
+                }
+            });
+            return result;
+        }
+
+        public static List<string> SplitCsv(this string text)
+        {
+            return SplitCsv<string>(text);
+        }
     }
 }

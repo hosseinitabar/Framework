@@ -27,7 +27,7 @@ namespace Holism.Api
             }
             this.ContentType = "application/json; charset=utf-8";
             this.StatusCode = (int)HttpStatusCode.OK;
-            this.Content = ((object)response).JsonSerialize(Casing.CamelCase);
+            this.Content = ((object)response).Serialize();
         }
     }
 }

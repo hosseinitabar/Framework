@@ -10,7 +10,7 @@ namespace Holism.Api.Controllers
         [HttpGet]
         public IActionResult Enums()
         {
-            return GeneralController.Enums(Request, Config.Enumerations);
+            return DefaultController.Enums(Request, Config.Enumerations);
         }
     }
 }

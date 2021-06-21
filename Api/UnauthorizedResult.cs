@@ -18,7 +18,7 @@ namespace Holism.Api
             content.Code = "UnauthorizedAccess";
             this.StatusCode = (int)HttpStatusCode.OK;
             this.ContentType = "application/json; charset=utf-8";
-            this.Content = ((object)content).JsonSerialize(Casing.CamelCase);
+            this.Content = ((object)content).Serialize();
         }
     }
 }

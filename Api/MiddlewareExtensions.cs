@@ -46,7 +46,7 @@ namespace Holism.Api
             }
             context.Response.ContentType = "application/json; charset=utf-8";
             context.Response.StatusCode = (int)HttpStatusCode.OK;
-            string result = ((object)response).JsonSerialize(Casing.CamelCase);
+            string result = ((object)response).Serialize();
             context.EnableCors();
             await context.Response.WriteAsync(result);
         }

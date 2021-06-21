@@ -93,11 +93,7 @@ namespace Holism.Api
             {
                 options.Conventions.Add(new ReferenceTypeBodyJsonBindingConvention());
                 options.Filters.Add(new ModelChecker());
-            }).AddNewtonsoftJson(options =>
-            {
-                //options.SerializerSettings.Converters.Add(new RelatedItemsFlattenerJsonConverter());
-                options.SerializerSettings.ContractResolver = new CamelCasePropertyNamesContractResolver();
-            });
+            }).AddJsonOptions(options => JsonHelper.Options);
         }
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)

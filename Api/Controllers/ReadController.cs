@@ -20,7 +20,7 @@ namespace Holism.Api.Controllers
 
         public virtual bool HasHugeDataAndNeedsFilteringForExport { get { return false; } }
 
-        public virtual Action<ListOptions> ListOptionsAugmenter { get; }
+        public virtual Action<ListParameters> ListParametersAugmenter { get; }
 
         public virtual Action<long> BeforeGet { get; }
 
@@ -29,25 +29,25 @@ namespace Holism.Api.Controllers
         public virtual Action<List<T>> BeforeReturningList { get; }
 
         [HttpGet]
-        public virtual ListResult<T> List([ModelBinder] ListOptions listOptions)
+        public virtual ListResult<T> List([ModelBinder] ListParameters listParameters)
         {
-            ListOptionsAugmenter?.Invoke(listOptions);
-            var result = ReadBusiness.GetList(listOptions);
+            ListParametersAugmenter?.Invoke(listParameters);
+            var result = ReadBusiness.GetList(listParameters);
             ModifyListResultBeforeReturning(result);
             BeforeReturningList?.Invoke(result.Data);
             return result;
         }
 
         [HttpGet]
-        public IActionResult Export([ModelBinder] ListOptions listOptions)
+        public IActionResult Export([ModelBinder] ListParameters listParameters)
         {
-            if (HasHugeDataAndNeedsFilteringForExport && !listOptions.HasFilters)
+            if (HasHugeDataAndNeedsFilteringForExport && !listParameters.HasFilters)
             {
                 throw new BusinessException("لطفا ابتدا فیلتر اعمال کنید");
             }
-            ListOptionsAugmenter?.Invoke(listOptions);
-            listOptions.ReturnAll = true;
-            var data = ReadBusiness.GetList(listOptions).Data;
+            ListParametersAugmenter?.Invoke(listParameters);
+            listParameters.ReturnAll = true;
+            var data = ReadBusiness.GetList(listParameters).Data;
             BeforeReturningList?.Invoke(data);
 
             var excelBytes = ExcelHelper.ListToExcel<T>(data);

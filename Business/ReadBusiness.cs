@@ -131,7 +131,7 @@ namespace Holism.Business
 
         public virtual T Get(Guid guid)
         {
-            guid.ToString().Ensure().AsString().IsNotEmptyGuid();
+            guid.ToString().Ensure().IsNotEmptyGuid();
             var item = ReadRepository.Get(guid);
             if (item == null)
             {

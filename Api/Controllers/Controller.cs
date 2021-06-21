@@ -1,5 +1,6 @@
 using Holism.Business;
-using Holism.EntityFramework;
+using Holism.DataAccess;
+using Holism.Models;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;

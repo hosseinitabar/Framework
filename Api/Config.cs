@@ -24,7 +24,7 @@ namespace Holism.Api
 
         public static void ConfigureEverything()
         {
-            //Startup.AddControllerSearchAssembly(typeof(Mvc.MvcConfig).Assembly);
+            //Startup.AddControllerSearchAssembly(typeof(Mvc.Config).Assembly);
             Startup.AddControllerSearchAssembly(typeof(Config).Assembly);
         }
 
@@ -39,6 +39,28 @@ namespace Holism.Api
                     return value.ToBoolean();
                 }
                 return false;
+            }
+        }
+        
+        public static string[] CorsOrigins
+        {
+            get
+            {
+                var key = "CorsOrigins";
+                if (HasSetting(key))
+                {
+                    var origins = GetSetting(key).SplitCsv().Select(i => i.TrimEnd('/')).ToArray();
+                    return origins;
+                }
+                return new string[] { };
+            }
+        }
+
+        public static bool CorsOriginsSpecified
+        {
+            get
+            {
+                return CorsOrigins.Length > 0;
             }
         }
     }

@@ -69,7 +69,7 @@ namespace Holism.Api
                 }
             }
             AddMvcService(services);
-            if (MvcConfig.CorsOriginsSpecified)
+            if (Config.CorsOriginsSpecified)
             {
                 services.AddCors();
             }
@@ -135,9 +135,9 @@ namespace Holism.Api
             app.UseCors(options =>
             {
                 options.SetIsOriginAllowedToAllowWildcardSubdomains();
-                foreach (var item in MvcConfig.CorsOrigins)
+                foreach (var item in Config.CorsOrigins)
                 {
-                    options.WithOrigins(MvcConfig.CorsOrigins).SetIsOriginAllowedToAllowWildcardSubdomains().AllowAnyHeader().AllowAnyMethod().AllowCredentials();
+                    options.WithOrigins(Config.CorsOrigins).SetIsOriginAllowedToAllowWildcardSubdomains().AllowAnyHeader().AllowAnyMethod().AllowCredentials();
                 }
             });
 

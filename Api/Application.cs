@@ -10,7 +10,9 @@ namespace Holism.Api
             var builder = Host.CreateDefaultBuilder()
             .ConfigureWebHostDefaults(webBuilder =>
             {
-                webBuilder.UseStartup<Startup>();
+                webBuilder
+                .UseStartup<Startup>()
+                .UseUrls("http://0.0.0.0:5000");
             });
             builder.Build().Run();
         }

@@ -12,7 +12,7 @@ using Holism.Models;
 
 namespace Holism.DataAccess
 {
-    public abstract class Repository<T> : ReadRepository<T>, ICrud<T> where T : class, IEntity, new()
+    public class Repository<T> : ReadRepository<T>, ICrud<T> where T : class, IEntity, new()
     {
         static object lockToken = new object();
 

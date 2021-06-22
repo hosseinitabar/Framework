@@ -18,12 +18,12 @@
 
 FROM mcr.microsoft.com/dotnet/sdk:3.1 AS three
 
-RUN apk update
-RUN apk add --no-cache git
-RUN apk add --upgrade unzip
+RUN apt-get -y update
+RUN apt-get -y install git
+RUN apt-get -y install zip unzip
+RUN apt-get -y install telnet
 WORKDIR /HolismDotNet
 RUN git clone https://github.com/HolismDotNet/Framework
-RUN git clone https://github.com/HolismDotNet/Api 
 WORKDIR /temp
 RUN dotnet new console -n Everything
 WORKDIR /temp/Everything

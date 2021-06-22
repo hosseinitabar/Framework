@@ -1,28 +1,32 @@
 version: "3.9"
 services: 
     api:
-        image: nefcanto/dotnet-dev
+        image: nefcanto/dotnet-dev:latest
         restart: always
         container_name: ${Package}DotNetApi
-        working_dir: /api
+        working_dir: /Api
         environment: 
             - HolismProjectsRoot=/HolismDotNet
         volumes: 
             - /HolismDotNet/Framework:/HolismDotNet/Framework
             - /HolismDotNet/Api:/HolismDotNet/Api
-            - .:/api
+            - .:/Api
         ports: 
             - "5000:5000"
         command: >
             sh -c
             "
-            cd /temp
-            && tail -f /dev/null
+            dotnet build
+            && dotnet Api/bin/Holism.${Package}.Api.dll
             "
+        depends_on: 
+            - "sql"
     sql:
-        image: mcr.microsoft.com/mssql/server:2017-latest-ubuntu
+        image: mcr.microsoft.com/mssql/server:2019-latest
         restart: always
         container_name: ${Package}Sql
+        volumes:
+            - ./Database:/var/opt/mssql
         environment: 
             - ACCEPT_EULA=Y
             - SA_PASSWORD=lksU2o412f7tBj58t07B

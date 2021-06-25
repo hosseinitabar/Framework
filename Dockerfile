@@ -64,6 +64,7 @@ RUN apk update \
     && dotnet add package Microsoft.Extensions.Configuration.Binder -v 3.1.12 \
     && dotnet add package AngleSharp -v 0.14.0 \
     && dotnet add package Microsoft.EntityFrameworkCore.SqlServer -v 3.1.12 \
+    && dotnet add package Microsoft.EntityFrameworkCore.Design -v 3.1.12 \
     && dotnet add package System.Linq.Dynamic.Core -v 1.2.8 \
     && dotnet add package Microsoft.EntityFrameworkCore.SqlServer.NetTopologySuite -v 3.1.12 \
     && dotnet add package EFCore.BulkExtensions -v 3.3.1 \

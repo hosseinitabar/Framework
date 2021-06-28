@@ -75,7 +75,7 @@ RUN apk update \
     && dotnet restore  \
     && dotnet build
 
-RUN dotnet tool install --global dotnet-ef --version 3.1.2
+RUN dotnet tool install --global dotnet-ef --version 3.1.12
 ENV PATH="${PATH}:/root/.dotnet/tools"
 
 # https://github.com/dotnet/dotnet-docker/blob/main/samples/dotnetapp/Dockerfile

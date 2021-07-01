@@ -37,5 +37,11 @@
     <ProjectReference Include="..\DataAccess\DataAccess.csproj" Condition="Exists('..\DataAccess\DataAccess.csproj')" />
     <ProjectReference Include="..\Business\Business.csproj" Condition="Exists('..\Business\Business.csproj')" />
   </ItemGroup>
+  
+  <ItemGroup>
+    <None Include="$(ProjectDir)/../ConnectionStrings.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
 
 </Project>

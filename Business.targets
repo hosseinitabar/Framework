@@ -25,7 +25,7 @@
   </ItemGroup>
   
   <ItemGroup>
-    <None Include="$(SolutionDir)\ConnectionStrings.json">
+    <None Include="$(ProjectDir)/../ConnectionStrings.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
   </ItemGroup>

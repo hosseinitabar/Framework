@@ -1,6 +1,6 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
-  <Import Project="$(HolismProjectsRoot)\Framework\DotNet.targets" />
+  <Import Project="/HolismDotNet/Framework/DotNet.targets" />
 
   <PropertyGroup>
     <AssemblyName>Holism.Validation</AssemblyName>
@@ -9,11 +9,11 @@
 
   <ItemGroup>
     <Reference Include="Holism.Framework">
-      <HintPath>$(HolismProjectsRoot)\Framework\Packages\Holism.Framework.dll</HintPath>
+      <HintPath>/HolismDotNet/Framework/Packages/Holism.Framework.dll</HintPath>
       <Private>True</Private>
     </Reference>
   </ItemGroup>
 
-  <Import Project="$(HolismProjectsRoot)\Framework\Reusable.targets" />
+  <Import Project="/HolismDotNet/Framework/Reusable.targets" />
 
 </Project>

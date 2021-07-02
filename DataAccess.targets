@@ -2,15 +2,15 @@
   
   <ItemGroup>
     <Reference Include="Holism.Framework">
-      <HintPath>$(HolismProjectsRoot)\Framework\Packages\Holism.Framework.dll</HintPath>
+      <HintPath>/HolismDotNet/Framework/Packages/Holism.Framework.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="Holism.Models">
-      <HintPath>$(HolismProjectsRoot)\Framework\Packages\Holism.Models.dll</HintPath>
+      <HintPath>/HolismDotNet/Framework/Packages/Holism.Models.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="Holism.DataAccess">
-      <HintPath>$(HolismProjectsRoot)\Framework\Packages\Holism.DataAccess.dll</HintPath>
+      <HintPath>/HolismDotNet/Framework/Packages/Holism.DataAccess.dll</HintPath>
       <Private>True</Private>
     </Reference>
   </ItemGroup>

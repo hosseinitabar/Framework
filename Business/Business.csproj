@@ -1,6 +1,6 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
-  <Import Project="$(HolismProjectsRoot)\Framework\DotNet.targets" />
+  <Import Project="/HolismDotNet/Framework/DotNet.targets" />
 
   <PropertyGroup>
     <AssemblyName>Holism.Business</AssemblyName>
@@ -9,27 +9,27 @@
 
   <ItemGroup>
     <Reference Include="Holism.Framework">
-      <HintPath>$(HolismProjectsRoot)\Framework\Packages\Holism.Framework.dll</HintPath>
+      <HintPath>/HolismDotNet/Framework/Packages/Holism.Framework.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="Holism.Validation">
-      <HintPath>$(HolismProjectsRoot)\Framework\Packages\Holism.Validation.dll</HintPath>
+      <HintPath>/HolismDotNet/Framework/Packages/Holism.Validation.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="Holism.Normalization">
-      <HintPath>$(HolismProjectsRoot)\Framework\Packages\Holism.Normalization.dll</HintPath>
+      <HintPath>/HolismDotNet/Framework/Packages/Holism.Normalization.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="Holism.Models">
-      <HintPath>$(HolismProjectsRoot)\Framework\Packages\Holism.Models.dll</HintPath>
+      <HintPath>/HolismDotNet/Framework/Packages/Holism.Models.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="Holism.DataAccess">
-      <HintPath>$(HolismProjectsRoot)\Framework\Packages\Holism.DataAccess.dll</HintPath>
+      <HintPath>/HolismDotNet/Framework/Packages/Holism.DataAccess.dll</HintPath>
       <Private>True</Private>
     </Reference>
   </ItemGroup>
 
-  <Import Project="$(HolismProjectsRoot)\Framework\Reusable.targets" />
+  <Import Project="/HolismDotNet/Framework/Reusable.targets" />
 
 </Project>

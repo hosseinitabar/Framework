@@ -8,7 +8,7 @@
     <CopyLocalLockFileAssemblies>false</CopyLocalLockFileAssemblies>
   </PropertyGroup>
 
-  <Import Project="$(HolismProjectsRoot)\Framework\Nuget.targets" />
+  <Import Project="/HolismDotNet/Framework/Nuget.targets" />
   
   <ItemGroup>
     <None Include="$(SolutionDir)\Settings.json">

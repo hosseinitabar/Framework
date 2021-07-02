@@ -2,7 +2,7 @@
   
   <ItemGroup>
     <Reference Include="Holism.Models">
-      <HintPath>$(HolismProjectsRoot)\Framework\Packages\Holism.Models.dll</HintPath>
+      <HintPath>/HolismDotNet/Framework/Packages/Holism.Models.dll</HintPath>
       <Private>True</Private>
     </Reference>
   </ItemGroup>

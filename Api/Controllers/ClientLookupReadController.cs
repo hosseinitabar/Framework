@@ -5,7 +5,7 @@ using System.Collections.Generic;
 
 namespace Holism.Api.Controllers
 {
-    public abstract class ClientLookupTController<T> : ReadController<T> where T : class, IEntity, new()
+    public abstract class ClientLookupReadController<T> : ReadController<T> where T : class, IEntity, new()
     {
         [HttpGet]
         public List<T> All()

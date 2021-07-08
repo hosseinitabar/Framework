@@ -17,9 +17,19 @@ namespace Holism.Validation
             return new EnsureNumber(number);
         }
 
+        public static EnsureNumber Ensure(this long number)
+        {
+            return new EnsureNumber(number);
+        }
+
         public static EnsureString Ensure(this string text)
         {
             return new EnsureString(text);
+        }
+
+        public static EnsureGuid Ensure(this Guid guid)
+        {
+            return new EnsureGuid(guid);
         }
 
         public static bool IsGuid(this string text)

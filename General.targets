@@ -5,6 +5,14 @@
       <HintPath>/HolismDotNet/Framework/Packages/Holism.Framework.dll</HintPath>
       <Private>True</Private>
     </Reference>
+    <Reference Include="Holism.Validation">
+      <HintPath>/HolismDotNet/Framework/Packages/Holism.Validation.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Holism.Normalization">
+      <HintPath>/HolismDotNet/Framework/Packages/Holism.Normalization.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
   </ItemGroup>
   
   <ItemGroup>

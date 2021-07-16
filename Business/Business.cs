@@ -14,7 +14,7 @@ namespace Holism.Business
 
         public virtual void Validate(Write model)
         {
-        }
+        }       
 
         protected virtual void BeforeCreation(Write model, object extraParameters = null)
         {

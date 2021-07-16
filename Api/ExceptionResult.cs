@@ -1,5 +1,6 @@
 using Holism.Framework;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Http;
 using System;
 using System.Collections.Generic;
 using System.Dynamic;
@@ -17,9 +18,17 @@ namespace Holism.Api
             response.Type = MessageType.Error.ToString();
             var message = ExceptionHelper.TranslateToFriendlyMessage(exception);
             response.Text = message;
-            if (exception is ClientException && ((ClientException)exception).Code.IsSomething())
+            if (exception is ClientException)
             {
-                response.Code = ((ClientException)exception).Code;
+                StatusCode = (int)HttpStatusCode.BadRequest;
+                if (((ClientException)exception).Code.IsSomething())
+                {
+                    response.Code = ((ClientException)exception).Code;
+                }
+            }
+            if (exception is ServerException)
+            {
+                StatusCode = (int)HttpStatusCode.InternalServerError;
             }
             if (exception is ClientException && ((ClientException)exception).Data != null)
             {

@@ -32,20 +32,27 @@ namespace Holism.Api
             response.Type = MessageType.Error.ToString();
             var message = ExceptionHelper.TranslateToFriendlyMessage(exception);
             response.Text = message;
-            if (exception is ClientException && ((ClientException)exception).Code.IsSomething())
+            if (exception is ClientException)
             {
-                response.Code = ((ClientException)exception).Code;
+                context.Response.StatusCode = (int)HttpStatusCode.BadRequest;
+                if (((ClientException)exception).Code.IsSomething())
+                {
+                    response.Code = ((ClientException)exception).Code;
+                }
+                if (((ClientException)exception).Data != null)
+                {
+                    response.Data = ((ClientException)exception).Data;
+                }
             }
-            if (exception is ClientException && ((ClientException)exception).Data != null)
+            if (exception is ServerException)
             {
-                response.Data = ((ClientException)exception).Data;
+                context.Response.StatusCode = (int)HttpStatusCode.InternalServerError;
             }
             if (Config.IsDeveloping)
             {
                 response.StackTrace = ExceptionHelper.BuildExceptionString(exception);
             }
             context.Response.ContentType = "application/json; charset=utf-8";
-            context.Response.StatusCode = (int)HttpStatusCode.OK;
             string result = ((object)response).Serialize();
             context.EnableCors();
             await context.Response.WriteAsync(result);

@@ -69,10 +69,16 @@ namespace Holism.Api
                 }
             }
             AddMvcService(services);
-            if (Config.CorsOriginsSpecified)
+            // if (Config.CorsOriginsSpecified)
+            // {
+            //     services.AddCors();
+            // }
+            services.AddCors(o => o.AddPolicy("AllOrigins", builder =>
             {
-                services.AddCors();
-            }
+                builder.AllowAnyOrigin()
+                       .AllowAnyMethod()
+                       .AllowAnyHeader();
+            }));
             if (NeedsUploadingBigFiles)
             {
                 services.Configure<FormOptions>(x =>
@@ -129,14 +135,16 @@ namespace Holism.Api
                 app.UseApiDelayedResponse();
             }
 
-            app.UseCors(options =>
-            {
-                options.SetIsOriginAllowedToAllowWildcardSubdomains();
-                foreach (var item in Config.CorsOrigins)
-                {
-                    options.WithOrigins(Config.CorsOrigins).SetIsOriginAllowedToAllowWildcardSubdomains().AllowAnyHeader().AllowAnyMethod().AllowCredentials();
-                }
-            });
+            // app.UseCors(options =>
+            // {
+            //     options.SetIsOriginAllowedToAllowWildcardSubdomains();
+            //     foreach (var item in Config.CorsOrigins)
+            //     {
+            //         options.WithOrigins(Config.CorsOrigins).SetIsOriginAllowedToAllowWildcardSubdomains().AllowAnyHeader().AllowAnyMethod().AllowCredentials();
+            //     }
+            // });
+
+            app.UseCors("AllOrigins");
 
             DisableCacheEntirely(app);
 

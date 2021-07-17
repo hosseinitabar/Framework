@@ -22,6 +22,11 @@ namespace Holism.Validation
             return new EnsureNumber(number);
         }
 
+        public static EnsureNumber Ensure(this decimal number)
+        {
+            return new EnsureNumber(number);
+        }
+
         public static EnsureString Ensure(this string text)
         {
             return new EnsureString(text);

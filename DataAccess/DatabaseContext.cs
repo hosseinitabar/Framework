@@ -21,15 +21,17 @@ namespace Holism.DataAccess
             foreach (var entity in allEntities)
             {
                 entity.Ignore("RelatedItems");
-                // var properties = entity.GetProperties();
+                Logger.LogInfo(entity.GetType().FullName);
+                var properties = entity.GetProperties();
                 // foreach (var property in properties)
                 // {
-                //     if (property.Name == "Guid") 
-                //     {
-                //         // set default to newid();
-                //         // set unique
-                //         // set type to be uniqueidentifier
-                //     }
+                //     Logger.LogInfo($"Property {property.Name} of {entity.GetType().FullName}");
+                // //     if (property.Name == "Guid") 
+                // //     {
+                // //         // set default to newid();
+                // //         // set unique
+                // //         // set type to be uniqueidentifier
+                // //     }
                 // }
                 // if it's Date, map it to datetime, and if it's DateOnly, map it to date and if it's type is Date but its name does not contain Date, throw error
             }

@@ -7,7 +7,7 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 
-namespace Holism.Api.Controllers
+namespace Holism.Api
 {
     public abstract class ReadController<T> : DefaultController where T : class, IEntity, new()
     {

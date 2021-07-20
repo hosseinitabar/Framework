@@ -3,7 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace Holism.Api.Controllers
+namespace Holism.Api
 {
     public class JavaScriptController : DefaultController
     {

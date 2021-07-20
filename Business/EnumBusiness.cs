@@ -99,7 +99,7 @@ set @query =
 	end
 	+ ' as [Guid],'
 	+ '
-	Key,
+	[Key]
 from {pluralName}'
 print @query
 exec sp_executesql @query

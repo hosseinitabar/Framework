@@ -5,7 +5,7 @@ using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
 
-namespace Holism.Api.Controllers
+namespace Holism.Api
 {
     public abstract class Controller<Read, Write> : ReadController<Read> where Read : class, IEntity, new() where Write : class, IEntity, new()
     {

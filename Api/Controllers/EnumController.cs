@@ -5,7 +5,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace Holism.Api.Controllers
+namespace Holism.Api
 {
     public abstract class EnumController<TEnum> : DefaultController where TEnum : struct, IConvertible
     {

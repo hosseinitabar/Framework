@@ -11,7 +11,7 @@ using System.Net.Http;
 using System.Net.Http.Headers;
 using System.Text;
 
-namespace Holism.Api.Controllers
+namespace Holism.Api
 {
     public class DebugController : DefaultController
     {

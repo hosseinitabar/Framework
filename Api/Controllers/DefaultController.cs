@@ -11,7 +11,7 @@ using System.Net;
 using System.Reflection;
 using System.Security.Claims;
 
-namespace Holism.Api.Controllers
+namespace Holism.Api
 {
     // [Authorize(Policy = "HasRole")]
     // [Authorize]

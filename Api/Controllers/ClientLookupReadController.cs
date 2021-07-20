@@ -3,7 +3,7 @@ using Holism.Models;
 using Microsoft.AspNetCore.Mvc;
 using System.Collections.Generic;
 
-namespace Holism.Api.Controllers
+namespace Holism.Api
 {
     public abstract class ClientLookupReadController<T> : ReadController<T> where T : class, IEntity, new()
     {

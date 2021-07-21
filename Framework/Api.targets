@@ -1,0 +1,47 @@
+<Project>
+  
+  <ItemGroup>
+    <Reference Include="Holism.Framework">
+      <HintPath>/HolismDotNet/Framework/Packages/Holism.Framework.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Holism.Models">
+      <HintPath>/HolismDotNet/Framework/Packages/Holism.Models.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Holism.DataAccess">
+      <HintPath>/HolismDotNet/Framework/Packages/Holism.DataAccess.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Holism.Business">
+      <HintPath>/HolismDotNet/Framework/Packages/Holism.Business.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Holism.Api">
+      <HintPath>/HolismDotNet/Framework/Packages/Holism.Api.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+  </ItemGroup>
+  
+  <ItemGroup>
+    <Content Update="SettingsOverride.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Update="Web.config">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Models\Models.csproj" Condition="Exists('..\Models\Models.csproj') And '$(ProjectName)' != 'CommonApi'" />
+    <ProjectReference Include="..\DataAccess\DataAccess.csproj" Condition="Exists('..\DataAccess\DataAccess.csproj')" />
+    <ProjectReference Include="..\Business\Business.csproj" Condition="Exists('..\Business\Business.csproj')" />
+  </ItemGroup>
+  
+  <ItemGroup>
+    <None Include="$(ProjectDir)/../ConnectionStrings.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+
+</Project>

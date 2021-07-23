@@ -95,7 +95,7 @@ namespace Holism.DataAccess
 
         public T Upsert(T t)
         {
-            T _temp = Get(ExistenceFilter(t));
+            T _temp = Get(t.Id);
             if (_temp == null)
             {
                 if (t.Id > 0)

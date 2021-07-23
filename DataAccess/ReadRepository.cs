@@ -175,25 +175,7 @@ namespace Holism.DataAccess
 
         public virtual T GetIfExists(T t)
         {
-            return Get(ExistenceFilter(t));
-        }
-
-        public virtual Expression<Func<T, bool>> ExistenceFilter(T t)
-        {
-            throw new ServerException($"ExistenceFilter expression is not implemented for {typeof(T).Name}");
-        }
-
-        public virtual Expression<Func<T, bool>> KeySelector
-        {
-            get
-            {
-                throw new ServerException($"KeySelector expression is not implemented for {typeof(T).Name}");
-            }
-        }
-
-        public virtual Func<T, bool> Key(T t)
-        {
-            return ExistenceFilter(t).Compile();
+            return Get(t.Id);
         }
 
         public List<T> Query(string query)

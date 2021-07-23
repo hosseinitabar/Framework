@@ -25,9 +25,5 @@ namespace Holism.DataAccess
         bool Exists(Expression<Func<T, bool>> filter);
 
         bool Exists(T t);
-
-        Expression<Func<T, bool>> ExistenceFilter(T t);
-
-        Expression<Func<T, bool>> KeySelector { get; }
     }
 }

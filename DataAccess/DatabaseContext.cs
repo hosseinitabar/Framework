@@ -22,7 +22,6 @@ namespace Holism.DataAccess
             {
                 entity.Ignore("RelatedItems");
                 Logger.LogInfo(entity.GetType().FullName);
-                //    var properties = entity.GetProperties();
                 // foreach (var property in properties)
                 // {
                 //     Logger.LogInfo($"Property {property.Name} of {entity.GetType().FullName}");

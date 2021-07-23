@@ -78,18 +78,9 @@ namespace Holism.DataAccess
 
         public virtual T Update(T t)
         {
-            return Update(Database, t);
-        }
-
-        public virtual T Update(string databaseName, T t)
-        {
-            using (var _context = (Activator.CreateInstance(context.GetType(), databaseName) as DbContext))
-            {
-                DbSet<T> _dbset = _context.Set<T>();
-                _dbset.Attach(t);
-                _context.Entry(t).State = EntityState.Modified;
-                _context.SaveChanges();
-            }
+            dbset.Attach(t);
+            context.Entry(t).State = EntityState.Modified;
+            context.SaveChanges();
             return t;
         }
 

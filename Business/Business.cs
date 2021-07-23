@@ -40,14 +40,9 @@ namespace Holism.Business
 
         public Write Update(Write model, object extraParameters = null)
         {
-            return Update(null, model, extraParameters);
-        }
-
-        public Write Update(string databaseName, Write model, object extraParameters = null)
-        {
             Validate(model);
             BeforeUpdate(model, extraParameters);
-            var result = WriteRepository.Update(databaseName, model);
+            var result = WriteRepository.Update(model);
             PostUpdate(model);
             return result;
         }

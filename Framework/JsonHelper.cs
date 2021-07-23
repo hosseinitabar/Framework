@@ -8,7 +8,11 @@ namespace Holism.Framework
         {
             get
             {
-                var options = new JsonSerializerOptions { WriteIndented = true };
+                var options = new JsonSerializerOptions {
+                    WriteIndented = true,
+                    PropertyNameCaseInsensitive = true,
+                    PropertyNamingPolicy = JsonNamingPolicy.CamelCase
+                };
                 return options;
             }
         }

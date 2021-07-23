@@ -45,17 +45,17 @@ namespace Holism.Api
         private ActionResult JsonMessage(string message, MessageType messageType, object data = null, string code = null)
         {
             dynamic @object = new ExpandoObject();
-            @object.Type = messageType.ToString();
-            @object.Message = message;
+            @object.type = messageType.ToString();
+            @object.message = message;
             if (data != null)
             {
-                @object.Data = data;
+                @object.data = data;
             }
             if (code.IsSomething())
             {
-                @object.Code = code;
+                @object.code = code;
             }
-        var result = new JsonResult(@object, JsonHelper.Options);
+            var result = new JsonResult(@object, JsonHelper.Options);
             result.StatusCode = (int)HttpStatusCode.OK;
             return result;
         }

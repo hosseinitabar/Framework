@@ -12,6 +12,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Reflection;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
 
 namespace Holism.Api
 {
@@ -54,7 +55,6 @@ namespace Holism.Api
             {
                 options.ModelBinderProviders.Insert(0, new ListParametersModelBinderProvider());
                 options.EnableEndpointRouting = false;
-                //options.Filters.Add(typeof(ProtectedIdResultFilter));
             });
             foreach (var controllerAssembly in AssembliesToSearchForControllers)
             {
@@ -69,10 +69,7 @@ namespace Holism.Api
                 }
             }
             AddMvcService(services);
-            // if (Config.CorsOriginsSpecified)
-            // {
-            //     services.AddCors();
-            // }
+            AddAuthentication(services);
             services.AddCors(o => o.AddPolicy("AllOrigins", builder =>
             {
                 builder.AllowAnyOrigin()
@@ -100,16 +97,11 @@ namespace Holism.Api
                 options.Conventions.Add(new ReferenceTypeBodyJsonBindingConvention());
                 options.Filters.Add(new ModelChecker());
             });
-            //.AddJsonOptions(JsonHelper.Options);
         }
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
             MiddlewareExtensions.UseExceptionHandler(app);
-
-            //app.UseExceptionHandler();
-
-            //app.UseServiceLengthner();
 
             if (Config.RedirectAllHttpRequestsToHttps)
             {
@@ -135,30 +127,17 @@ namespace Holism.Api
                 app.UseApiDelayedResponse();
             }
 
-            // app.UseCors(options =>
-            // {
-            //     options.SetIsOriginAllowedToAllowWildcardSubdomains();
-            //     foreach (var item in Config.CorsOrigins)
-            //     {
-            //         options.WithOrigins(Config.CorsOrigins).SetIsOriginAllowedToAllowWildcardSubdomains().AllowAnyHeader().AllowAnyMethod().AllowCredentials();
-            //     }
-            // });
-
             app.UseCors("AllOrigins");
 
             DisableCacheEntirely(app);
 
             HttpContextHelper.Configure(app.ApplicationServices.GetRequiredService<IHttpContextAccessor>());
+            app.UseAuthentication();
 
             app.UseMvc(options =>
             {
                 options.MapRoute("Default", "{controller=Default}/{action=Index}/{id?}");
             });
-
-            //app.UseEndpoints(endpoints =>
-            //{
-            //    endpoints.MapControllerRoute(name: "Default", pattern: "{controller=Default}/{action=Index}/{id?}");
-            //});
         }
 
         public void DisableCacheEntirely(IApplicationBuilder app)
@@ -169,6 +148,34 @@ namespace Holism.Api
                 context.Response.Headers["Pragma"] = "no-cache";
                 context.Response.Headers["Expires"] = "0";
                 return next.Invoke();
+            });
+        }
+
+        public void AddAuthentication(IServiceCollection services) 
+        {
+            services.AddAuthentication(options =>
+            {
+                options.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
+                options.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
+            }).AddJwtBearer(o =>
+            {
+                o.Authority = Config.GetSetting("JwtAuthority");
+                o.Audience = Config.GetSetting("JwtAudience");
+                o.Events = new JwtBearerEvents()
+                {
+                    OnAuthenticationFailed = c =>
+                    {
+                        c.NoResult();
+
+                        c.Response.StatusCode = 500;
+                        c.Response.ContentType = "text/plain";
+                        if (Config.IsDeveloping)
+                        {
+                            return c.Response.WriteAsync(c.Exception.ToString());
+                        }
+                        return c.Response.WriteAsync("An error occured processing your authentication.");
+                    }
+                };
             });
         }
     }

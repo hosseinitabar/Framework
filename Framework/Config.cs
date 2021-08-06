@@ -26,6 +26,20 @@ namespace Holism.Framework
             return newPath;
         }
 
+        public static bool HasEnvironmentVariable(string key) 
+        {
+            var result = Environment.GetEnvironmentVariable(key, EnvironmentVariableTarget.User);
+            if (result.IsNothing())
+            {
+                result = Environment.GetEnvironmentVariable(key, EnvironmentVariableTarget.Machine);
+            }
+            if (result.IsNothing())
+            {
+                return false;
+            }
+            return true;
+        }
+
         public static string GetEnvironmentVariable(string key)
         {
             return GetEnvironmentVariable(key, null);

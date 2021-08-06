@@ -11,7 +11,7 @@
   <Import Project="/HolismDotNet/Framework/Nuget.targets" />
   
   <ItemGroup>
-    <None Include="$(SolutionDir)\Settings.json">
+    <None Include="$(ProjectDir)\..\Settings.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
   </ItemGroup>

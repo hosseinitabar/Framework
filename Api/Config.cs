@@ -24,8 +24,7 @@ namespace Holism.Api
 
         public static void ConfigureEverything()
         {
-            //Startup.AddControllerSearchAssembly(typeof(Mvc.Config).Assembly);
-            Startup.AddControllerSearchAssembly(typeof(Config).Assembly);
+            Startup.AddControllerSearchAssembly(typeof(Startup).Assembly);
         }
 
         public static bool RedirectAllHttpRequestsToHttps

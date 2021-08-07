@@ -12,14 +12,7 @@ namespace Holism.DataAccess
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            var connectionString = Config.GetConnectionString(ConnectionStringName);
-            var sqlServerPassword = "SqlServerPassword";
-            if (Config.HasEnvironmentVariable(sqlServerPassword))
-            {
-                var pass = Config.GetEnvironmentVariable(sqlServerPassword);
-                pass = Regex.Replace(connectionString, @"(?<=password=)([^;]*)", sqlServerPassword);
-            }
-            optionsBuilder.UseSqlServer(connectionString);
+            optionsBuilder.UseSqlServer(Config.GetConnectionString(ConnectionStringName));
         }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)

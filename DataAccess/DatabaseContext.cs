@@ -18,7 +18,7 @@ namespace Holism.DataAccess
                 var pass = Config.GetEnvironmentVariable(sqlServerPassword);
                 pass = Regex.Replace(connectionString, @"(?<=password=)([^;]*)", sqlServerPassword);
             }
-            optionsBuilder.UseSqlServer(Config.GetConnectionString(ConnectionStringName));
+            optionsBuilder.UseSqlServer(connectionString);
         }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)

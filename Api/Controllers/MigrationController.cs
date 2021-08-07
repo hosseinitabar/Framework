@@ -34,7 +34,7 @@ namespace Holism.Api
                 {
                     result += $"{type.Name}\n";
                     var context = (DatabaseContext)Activator.CreateInstance(type);
-                    result += context.Database.GetDbConnection().ConnectionString;
+                    // result += context.Database.GetDbConnection().ConnectionString;
                     context.Database.Migrate();
                 }
             }

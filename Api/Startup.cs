@@ -136,6 +136,12 @@ namespace Holism.Api
 
             HttpContextHelper.Configure(app.ApplicationServices.GetRequiredService<IHttpContextAccessor>());
             app.UseAuthentication();
+            app.UseAuthorization(options =>
+            {
+                // options.AddPolicy("Administrator", policy => policy.RequireAssertion(
+                //     context => context.User
+                // ));
+            });
 
             app.UseMvc(options =>
             {
@@ -165,7 +171,7 @@ namespace Holism.Api
                 o.Authority = Config.GetSetting("JwtAuthority");
                 o.Audience = Config.GetSetting("JwtAudience");
                 o.Events = new JwtBearerEvents()
-                {
+                {JwtBearerEvents
                     OnAuthenticationFailed = c =>
                     {
                         c.NoResult();

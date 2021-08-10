@@ -7,7 +7,7 @@ namespace Holism.Api
 {
     public class Config : Framework.Config
     {
-        public static string Roles = "";
+        public static string Role = "";
 
         public static bool DelayApiResponsesGlobally = false;
 

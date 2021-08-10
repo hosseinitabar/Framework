@@ -5,12 +5,12 @@ using System.Text;
 
 namespace Holism.Api
 {
-    public class JavaScriptController : DefaultController
+    public class JavaScriptController : HolismController
     {
         [HttpGet]
         public IActionResult Enums()
         {
-            return DefaultController.Enums(Request, Config.Enumerations);
+            return HolismController.Enums(Request, Config.Enumerations);
         }
     }
 }

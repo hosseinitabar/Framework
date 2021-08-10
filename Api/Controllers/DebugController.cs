@@ -13,7 +13,7 @@ using System.Text;
 
 namespace Holism.Api
 {
-    public class DebugController : DefaultController
+    public class DebugController : HolismController
     {
         IActionDescriptorCollectionProvider actionDescriptorCollectionProvider;
 

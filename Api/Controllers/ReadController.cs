@@ -9,7 +9,7 @@ using System.IO;
 
 namespace Holism.Api
 {
-    public abstract class ReadController<T> : DefaultController where T : class, IEntity, new()
+    public abstract class ReadController<T> : HolismController where T : class, IEntity, new()
     {
         public abstract ReadBusiness<T> ReadBusiness { get; }
 

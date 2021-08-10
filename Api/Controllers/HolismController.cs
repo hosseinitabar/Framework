@@ -13,9 +13,8 @@ using System.Security.Claims;
 
 namespace Holism.Api
 {
-    // [Authorize(Policy = "HasRole")]
-    // [Authorize]
-    public class DefaultController : Controller
+    [Authorize(Policy = "HasRole")]
+    public class HolismController : Controller
     {
         public static Func<long, Guid> UserGuidProvider;
 

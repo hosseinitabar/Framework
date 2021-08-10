@@ -10,7 +10,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace Holism.Api
 {
-    public class MigrationController : DefaultController
+    public class MigrationController : HolismController
     {
         [HttpGet]
         public IActionResult Apply()

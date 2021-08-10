@@ -7,7 +7,7 @@ using System.Text;
 
 namespace Holism.Api
 {
-    public abstract class EnumController<TEnum> : DefaultController where TEnum : struct, IConvertible
+    public abstract class EnumController<TEnum> : HolismController where TEnum : struct, IConvertible
     {
         public abstract EnumBusiness<TEnum> EnumBusiness { get; }
 

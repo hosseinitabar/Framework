@@ -71,6 +71,9 @@ namespace Holism.Api
             }
             AddMvcService(services);
             AddAuthentication(services);
+            services.AddAuthorization(options => {
+                options.AddPolicy("HasRole", policy => policy.RequireRole(Config.Role));
+            });
             services.AddCors(o => o.AddPolicy("AllOrigins", builder =>
             {
                 builder.AllowAnyOrigin()

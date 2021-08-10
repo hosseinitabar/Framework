@@ -1,3 +1,4 @@
+using Microsoft.IdentityModel.Logging;
 using Holism.Framework;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -88,6 +89,8 @@ namespace Holism.Api
             {
                 serviceRegistrar.Invoke(services);
             }
+
+            IdentityModelEventSource.ShowPII = true;
         }
 
         private static void AddMvcService(IServiceCollection services)

@@ -60,7 +60,7 @@ namespace Holism.Framework
             return filter;
         }
 
-        public void AddFilter<T>(Expression<Func<T, object>> propertySelector, string value, FilterOperator filterOperator = FilterOperator.Equal)
+        public void AddFilter<T>(Expression<Func<T, object>> propertySelector, object value, FilterOperator filterOperator = FilterOperator.Equal)
         {
             string property = GetPropertyName(propertySelector);
             AddFilter(new Filter

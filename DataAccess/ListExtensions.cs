@@ -129,7 +129,7 @@ namespace Holism.DataAccess
 
         public static IQueryable<T> ApplyFilter<T>(this IQueryable<T> items, Filter filter)
         {
-            if (filter.Value == "null")
+            if (filter.Value == null)
             {
                 if (filter.Operator == FilterOperator.Equal)
                 {
@@ -168,7 +168,7 @@ namespace Holism.DataAccess
             }
             else
             {
-                if (filter.Property.Contains(' ') || filter.Value.Contains(' '))
+                if (filter.Property.Contains(' ') || filter.Value.ToString().Contains(' '))
                     throw new ServerException("Request is invalid");
                 var filterClause = $"{filter.Property} {filter.OperatorMathematicalNotation} {filter.Value}";
                 items = items.Where(filterClause);
@@ -181,7 +181,7 @@ namespace Holism.DataAccess
             if (filter.Operator != FilterOperator.Equal)
                 throw new ServerException("Filter operator is not valid");
             Guid guid;
-            if (!Guid.TryParse(filter.Value, out guid))
+            if (!Guid.TryParse(filter.Value.ToString(), out guid))
             {
                 return items;
             }
@@ -205,7 +205,7 @@ namespace Holism.DataAccess
                 throw new ServerException("Filter operator is not valid");
             try
             {
-                var value = Enum.Parse(propertyInfo.PropertyType, filter.Value);
+                var value = Enum.Parse(propertyInfo.PropertyType, filter.Value.ToString());
                 var filterClause = $"{filter.Property} = \"{value}\"";
                 items = items.Where(filterClause);
                 return items;
@@ -250,7 +250,7 @@ namespace Holism.DataAccess
 
         private static IQueryable<T> FilterStringForOneChoice<T>(IQueryable<T> items, Filter filter)
         {
-            var values = filter.Value.Split(' ');
+            var values = filter.Value.ToString().Split(' ');
             var whereCluase = string.Empty;
             for (int i = 0; i < values.Length; i++)
             {
@@ -271,7 +271,7 @@ namespace Holism.DataAccess
         private static IQueryable<T> FilterDate<T>(IQueryable<T> items, Filter filter)
         {
             DateTime date;
-            if (DateTime.TryParse(filter.Value, out date))
+            if (DateTime.TryParse(filter.Value.ToString(), out date))
             {
                 items = items.Where(filter.Property + " " + filter.OperatorMathematicalNotation + " (@0)", date);
             }
@@ -283,9 +283,9 @@ namespace Holism.DataAccess
             foreach (var filter in filters)
             {
                 filter.Property = filter.Property.Trim();
-                if (filter.Value.IsSomething())
+                if (filter.Value != null && filter.Value.ToString().IsSomething())
                 {
-                    filter.Value = filter.Value.Trim();
+                    filter.Value = filter.Value.ToString().Trim();
                 }
                 if (filter.Values != null)
                 {
@@ -323,7 +323,7 @@ namespace Holism.DataAccess
             {
                 return true;
             }
-            var isValid = i.Value.IsSomething();
+            var isValid = i.Value != null && i.Value.ToString().IsSomething();
             return isValid;
         }
     }

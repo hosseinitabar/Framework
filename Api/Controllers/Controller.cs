@@ -24,7 +24,7 @@ namespace Holism.Api
         {
             BeforeCreation?.Invoke(model);
             var createdEntity = Business.Create(model, GetExtraParameters());
-            return OkJson("Done", createdEntity, "CretionDone");
+            return CreationJson(createdEntity);
         }
 
         [HttpPost]
@@ -32,7 +32,7 @@ namespace Holism.Api
         {
             BeforeUpserting?.Invoke(model);
             var upsertedEntity = Business.Upsert(model, GetExtraParameters());
-            return OkJson("Done", upsertedEntity, "UpsertDone");
+            return UpsertJson(upsertedEntity);
         }
 
         public virtual object GetExtraParameters()

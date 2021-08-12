@@ -16,8 +16,6 @@ namespace Holism.Api
     [Authorize(Policy = "HasRole")]
     public class HolismController : Controller
     {
-        public static Func<long, Guid> UserGuidProvider;
-
         public static JavaScriptResult Enums(HttpRequest request, Type type)
         {
             var result = EnumExtractor.Extract(type);
@@ -39,6 +37,26 @@ namespace Holism.Api
         public ActionResult ErrorJson(string message, object data = null, string code = null)
         {
             return JsonMessage(message, MessageType.Error, data, code);
+        }
+
+        public IActionResult CreationJson(object data = null)
+        {
+            return OkJson("Done", data, "CreationDone");
+        }
+
+        public IActionResult UpsertJson(object data = null)
+        {
+            return OkJson("Done", data, "UpsertDone");
+        }
+
+        public IActionResult UpdateJson(object data = null)
+        {
+            return OkJson("Done", data, "UpdateDone");
+        }
+
+        public IActionResult DeletionJson(object data = null)
+        {
+            return OkJson("Done", data, "DeletionDone");
         }
 
         private ActionResult JsonMessage(string message, MessageType messageType, object data = null, string code = null)
@@ -122,28 +140,13 @@ namespace Holism.Api
             }
         }
 
-        public long UserId
-        {
-            get
-            {
-                var id = User.FindFirst(ClaimTypes.NameIdentifier).Value.ToLong();
-                return id;
-            }
-        }
-
         public Guid UserGuid
         {
             get
             {
-                var guid = UserGuidProvider?.Invoke(UserId);
-                return guid.Value;
+                var guid = Guid.Parse(User.FindFirst(ClaimTypes.NameIdentifier).Value);
+                return guid;
             }
-        }
-
-        [HttpGet]
-        public IActionResult CheckAuthenticationToken()
-        {
-            return OkJson();
         }
     }
 }

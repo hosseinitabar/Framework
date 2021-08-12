@@ -16,7 +16,7 @@ namespace Holism.Framework
             }
         }
 
-        public string Value { get; set; }
+        public object Value { get; set; }
 
         public List<string> Values { get; set; }
     }

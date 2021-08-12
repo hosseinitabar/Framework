@@ -25,7 +25,8 @@ namespace Holism.Business
             Validate(model);
             BeforeCreation(model, extraParameters);
             var result = WriteRepository.Create(model);
-            PostCreation(model);
+            result.RelatedItems = model.RelatedItems;
+            PostCreation(model, extraParameters);
             return result;
         }
 

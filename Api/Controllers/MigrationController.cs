@@ -7,9 +7,11 @@ using Microsoft.AspNetCore.Mvc;
 using System.Collections.Generic;
 using System.IO;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.AspNetCore.Authorization;
 
 namespace Holism.Api
 {
+    [Authorize(Role="Admin")]
     public class MigrationController : HolismController
     {
         [HttpGet]

@@ -30,7 +30,7 @@ namespace Holism.Business
             return result;
         }
 
-        protected virtual void PostCreation(Write model)
+        protected virtual void PostCreation(Write model, object extraParameters = null)
         {
 
         }

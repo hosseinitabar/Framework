@@ -11,7 +11,7 @@ using Microsoft.AspNetCore.Authorization;
 
 namespace Holism.Api
 {
-    [Authorize(Role="Admin")]
+    [Authorize(Roles="Admin")]
     public class MigrationController : HolismController
     {
         [HttpGet]

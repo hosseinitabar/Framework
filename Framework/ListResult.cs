@@ -72,6 +72,23 @@ namespace Holism.Framework
 
         public long? TotalCount { get; set; }
 
+        public long? PagesCount
+        {
+            get
+            {
+                if (!HasData)
+                {
+                    return 0;
+                }
+                if (TotalCount == null)
+                {
+                    return null;
+                }
+                var pagesCount = (int)Math.Ceiling((decimal)TotalCount.Value / (decimal)PageSize);
+                return pagesCount;
+            }
+        }
+
         public bool HasData
         {
             get

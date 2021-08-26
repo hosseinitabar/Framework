@@ -13,7 +13,7 @@ using System.Security.Claims;
 
 namespace Holism.Api
 {
-    [Authorize(Policy = "HasRole")]
+   // [Authorize(Policy = "HasRole")]
     public class HolismController : Controller
     {
         public static JavaScriptResult Enums(HttpRequest request, Type type)

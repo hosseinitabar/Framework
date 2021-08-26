@@ -72,6 +72,11 @@ namespace Holism.Api
             AddMvcService(services);
             AddAuthentication(services);
             services.AddAuthorization(options => {
+                if (!SecurityEnabled) 
+                {
+                    options.AddPolicy("HasRole", policy => policy.RequireAssertion(x => true));
+                    return;
+                }
                 if (Config.Role.IsSomething())
                 {
                     options.AddPolicy("HasRole", policy => policy.RequireRole(Config.Role));
@@ -145,8 +150,12 @@ namespace Holism.Api
             DisableCacheEntirely(app);
 
             HttpContextHelper.Configure(app.ApplicationServices.GetRequiredService<IHttpContextAccessor>());
-            app.UseAuthentication();
-            app.UseAuthorization();
+
+            if (SecurityEnabled) 
+            {
+                app.UseAuthentication();
+                app.UseAuthorization();
+            }
 
             app.UseMvc(options =>
             {
@@ -191,6 +200,18 @@ namespace Holism.Api
                     }
                 };
             });
+        }
+
+        public static bool SecurityEnabled
+        {
+            get
+            {
+                if (Framework.Config.HasSetting("Security") && Framework.Config.GetSetting("Security") == "off")
+                {
+                    return false;
+                }
+                return true;
+            }
         }
     }
 }

@@ -72,13 +72,20 @@ namespace Holism.Api
             AddMvcService(services);
             AddAuthentication(services);
             services.AddAuthorization(options => {
-                if (Config.Role.IsSomething())
+                if(IsSecurityEnabled()) 
                 {
-                    options.AddPolicy("HasRole", policy => policy.RequireRole(Config.Role));
+                    if (Config.Role.IsSomething())
+                    {
+                        options.AddPolicy("HasRole", policy => policy.RequireRole(Config.Role));
+                    }
+                    else 
+                    {
+                        options.AddPolicy("HasRole", policy => policy.RequireAssertion(x => x.User.Identity.IsAuthenticated));
+                    }
                 }
                 else 
                 {
-                    options.AddPolicy("HasRole", policy => policy.RequireAssertion(x => x.User.Identity.IsAuthenticated));
+                    options.AddPolicy("HasRole", policy => policy.RequireAssertion(x => true));
                 }
             });
             services.AddCors(o => o.AddPolicy("AllOrigins", builder =>
@@ -145,8 +152,12 @@ namespace Holism.Api
             DisableCacheEntirely(app);
 
             HttpContextHelper.Configure(app.ApplicationServices.GetRequiredService<IHttpContextAccessor>());
-            app.UseAuthentication();
-            app.UseAuthorization();
+
+            if (IsSecurityEnabled())
+            {
+                app.UseAuthentication();
+                app.UseAuthorization();
+            }
 
             app.UseMvc(options =>
             {
@@ -191,6 +202,15 @@ namespace Holism.Api
                     }
                 };
             });
+        }
+
+        public static bool IsSecurityEnabled() 
+        {
+            if (Framework.Config.HasSetting("Security") && Framework.Config.GetSetting("Security") == "off") 
+            {
+                return false;
+            }
+            return true;
         }
     }
 }

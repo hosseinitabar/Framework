@@ -1,11 +1,18 @@
 using System;
 using Microsoft.EntityFrameworkCore.Migrations;
+using Humanizer;
 
 namespace Holism.DataAccess
 {
     public partial class EnumMigration<T> : Migration where T : Enum
     {
-        protected virtual string TableName { get; }
+        protected virtual string TableName 
+        {
+            get
+            {
+                return typeof(T).Name.Pluralize();
+            } 
+        }
 
         protected override void Up(MigrationBuilder migrationBuilder)
         {

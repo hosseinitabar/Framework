@@ -18,19 +18,29 @@ namespace Holism.DataAccess
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
+            ConfigGuid(modelBuilder);
+            ConfigRelatedItems(modelBuilder);
+        }        
 
-            foreach (var property in modelBuilder.Model.GetEntityTypes()
+        public void ConfigGuid(ModelBuilder modelBuilder) 
+        {
+            var guidProperties = modelBuilder.Model.GetEntityTypes()
                                                 .SelectMany(t => t.GetProperties())
-                                                .Where(p => p.ClrType == typeof(Guid) && p.Name =="Guid")) 
+                                                .Where(p => p.ClrType == typeof(Guid) && p.Name =="Guid").ToList();
+            foreach (var property in guidProperties)
             {
-                    
                 property.SetDefaultValueSql("newid()");
             }
-            foreach (var entity in modelBuilder.Model.GetEntityTypes().Select(p => modelBuilder.Entity(p.ClrType)))
+        }
+
+        public void ConfigRelatedItems(ModelBuilder modelBuilder)
+        {
+            var entities = modelBuilder.Model.GetEntityTypes().Select(p => modelBuilder.Entity(p.ClrType));
+            foreach (var entity in entities)
             {
                 entity.Ignore("RelatedItems");
                 Logger.LogInfo(entity.GetType().FullName);
             }
-        }        
+        }
     }
 }

@@ -1,4 +1,6 @@
 using Holism.Framework;
+using System.Text.RegularExpressions;
+using System;
 
 namespace Holism.DatabaseUpdater
 {
@@ -10,18 +12,32 @@ namespace Holism.DatabaseUpdater
             {
                 throw new ClientException($"Please provide database name");
             }
-            CreateDatabase(database.Name);
+            try
+            {
+                 CreateDatabase(database.Name);
+            }
+            catch (Exception ex)
+            {
+                Logger.LogException(ex);
+            }
         }
 
-        private static void CreateDatabase(string name)
+        public static string GetMasterConnectionString(string databaseName)
+        {
+            var connectionString = Config.GetConnectionString(databaseName);
+            connectionString = Regex.Replace(connectionString, @"(?<=initial\s*catalog\s*=)[^;]*", "master");
+            return connectionString;
+        }
+
+        private static void CreateDatabase(string databaseName)
         {
             var query = @$"
-            if not exists (select * from sys.databases where name='{name}')
+            if not exists (select * from sys.databases where name='{databaseName}')
             begin
-                create database [{name}]
+                create database [{databaseName}]
             end
             ";
-            Holism.DataAccess.Database.Open(Config.GetConnectionString(name)).Run(query);
+            Holism.DataAccess.Database.Open(GetMasterConnectionString(databaseName)).Run(query);
         }
     }
 }

@@ -27,7 +27,7 @@ namespace Holism.Framework
             var isSomething = !text.IsNothing();
             return isSomething;
         }
-        
+
         public static T ToEnum<T>(this string value)
         {
             if (typeof(T).BaseType.Name != typeof(Enum).Name)

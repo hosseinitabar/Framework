@@ -4,13 +4,17 @@
 
   <PropertyGroup>
     <OutputType>Exe</OutputType>
-    <AssemblyName>Holism.Database</AssemblyName>
-    <RootNamespace>Holism.Database</RootNamespace>
+    <AssemblyName>Holism.DatabaseUpdater</AssemblyName>
+    <RootNamespace>Holism.DatabaseUpdater</RootNamespace>
   </PropertyGroup>
 
   <ItemGroup>
     <Reference Include="Holism.Framework">
       <HintPath>/HolismDotNet/Framework/Packages/Holism.Framework.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Holism.Validation">
+      <HintPath>/HolismDotNet/Framework/Packages/Holism.Validation.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="Holism.Models">

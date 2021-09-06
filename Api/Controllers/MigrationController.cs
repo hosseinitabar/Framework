@@ -8,6 +8,8 @@ using System.Collections.Generic;
 using System.IO;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.AspNetCore.Authorization;
+using System.Data.SqlClient;
+using Holism.Framework;
 
 namespace Holism.Api
 {
@@ -23,7 +25,6 @@ namespace Holism.Api
             assemblies = assemblies
                 .Where(i => i.GetName().Name.Contains("DataAccess"))
                 .ToList();
-            var result = "";
             foreach (var assembly in assemblies) 
             {
                 var types = assembly
@@ -34,13 +35,34 @@ namespace Holism.Api
                     .ToList();
                 foreach (var type in types) 
                 {
-                    result += $"{type.Name}\n";
-                    var context = (DatabaseContext)Activator.CreateInstance(type);
-                    // result += context.Database.GetDbConnection().ConnectionString;
-                    context.Database.Migrate();
+                    ApplyMigration(type);
                 }
             }
-            return OkJson(result);
+            return OkJson();
+        }
+
+        public static void ApplyMigration(Type type)
+        {
+            try
+            {
+                var context = (DatabaseContext)Activator.CreateInstance(type);
+                Logger.LogInfo($"Applying migration for {type.Name}");
+                TestConnection(context);
+                context.Database.Migrate();
+            }
+            catch (Exception ex)
+            {
+                Logger.LogException(ex);
+            }
+        }
+
+        public static void TestConnection(DatabaseContext context)
+        {
+            var connectionString = context.Database.GetDbConnection().ConnectionString;
+            var connection = new SqlConnection(connectionString);
+            Logger.LogInfo($"Connection string: {connectionString}");
+            connection.Open();
+            connection.Close();
         }
     }
 }

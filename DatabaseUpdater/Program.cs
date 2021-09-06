@@ -25,10 +25,7 @@ namespace Holism.DatabaseUpdater
                 throw new ClientException($"{file} is not a valid JSON");
             }
             var database = json.Deserialize<Database>();
-            if (database.Name.IsNothing())
-            {
-                throw new ClientException($"Please provide database name in {file}");
-            }
+            DatabaseHelper.CreateDatabase(database);
             Logger.LogSuccess(database.Name);
         }
     }

@@ -6,10 +6,14 @@ namespace Holism.DatabaseUpdater
     {
         public string Name { get; set; }
 
-        public List<Column> Column { get; set; }
+        public bool HasGuid { get; set; }
 
-        //public List<ForeignKeys> ForeignKeys { get; set; }
+        public List<Column> Columns { get; set; }
 
-        //public List<Indexes> ForeignKeys { get; set; }
+        public string OneToOneWith { get; set; }
+
+        public List<ForeignKey> ForeignKeys { get; set; }
+
+        public List<Index> Indexes { get; set; }
     }
 }

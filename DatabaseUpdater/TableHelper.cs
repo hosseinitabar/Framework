@@ -28,16 +28,12 @@ namespace Holism.DatabaseUpdater
             begin
                 create table {table.Name}
                 (
-                    Id bigint not null primary key identity(1,1),
-                    [Guid] uniqueidentifier default('newid()')
+                    Id bigint not null primary key {(table.OneToOneWith.IsSomething() ? "" : "identity(1,1)")}
                 )
             end
             ";
-        }
-
-        public void IsOneToOneRelationship(Table table)
-        {
-            
+            Holism.DataAccess.Database.Open(connectionString).Run(query);
+            ColumnHelper.CreateColumns(connectionString, table);
         }
     }
 }

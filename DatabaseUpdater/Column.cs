@@ -7,5 +7,7 @@ namespace Holism.DatabaseUpdater
         public string ClrType { get; set; }
 
         public string SqlType { get; set; }
+
+        public bool Nullable { get; set; }
     }
 }

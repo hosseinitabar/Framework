@@ -1,0 +1,25 @@
+<Project>
+  
+  <ItemGroup>
+    <Reference Include="$(Organization).$(Repository).Models">
+      <HintPath>/$(Organization)/$(Repository)/Packages/$(Organization).$(Repository).Models.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="$(Organization).$(Repository).DataAccess">
+      <HintPath>/$(Organization)/$(Repository)/Packages/$(Organization).$(Repository).DataAccess.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="$(Organization).$(Repository).Business">
+      <HintPath>/$(Organization)/$(Repository)/Packages/$(Organization).$(Repository).Business.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+  </ItemGroup>
+  
+  <ItemGroup>
+    <Content Include="/$(Organization)/$(Repository)/Database.json">
+      <Link>Database\$(Repository).json</Link>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
+
+</Project>

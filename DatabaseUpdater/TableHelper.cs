@@ -29,7 +29,7 @@ namespace Holism.DatabaseUpdater
             begin
                 create table {table.Name}
                 (
-                    Id bigint not null primary key {(table.OneToOneWith.IsSomething() ? "" : "identity(1,1)")}
+                    Id bigint not null primary key {((table.OneToOneWith.IsSomething() || table.IsEnum) ? "" : "identity(1,1)")}
                 )
             end
             ";

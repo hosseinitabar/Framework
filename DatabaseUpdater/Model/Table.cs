@@ -8,6 +8,8 @@ namespace Holism.DatabaseUpdater
 
         public bool HasGuid { get; set; }
 
+        public bool IsEnum { get; set; }
+
         public List<Column> Columns { get; set; }
 
         public string OneToOneWith { get; set; }

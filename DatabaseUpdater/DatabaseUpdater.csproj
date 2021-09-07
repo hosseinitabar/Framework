@@ -27,4 +27,6 @@
     </Reference>
   </ItemGroup>
 
+  <Import Project="/HolismDotNet/Framework/Reusable.targets" />
+
 </Project>

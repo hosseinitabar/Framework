@@ -15,6 +15,7 @@ namespace Holism.DatabaseUpdater
             try
             {
                  CreateDatabase(database.Name);
+                 TableHelper.CreateTables(database);
             }
             catch (Exception ex)
             {

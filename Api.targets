@@ -13,6 +13,10 @@
       <HintPath>/HolismDotNet/Framework/Packages/Holism.DataAccess.dll</HintPath>
       <Private>True</Private>
     </Reference>
+    <Reference Include="Holism.DatabaseUpdater">
+      <HintPath>/HolismDotNet/Framework/Packages/Holism.DatabaseUpdater.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="Holism.Business">
       <HintPath>/HolismDotNet/Framework/Packages/Holism.Business.dll</HintPath>
       <Private>True</Private>

@@ -5,14 +5,15 @@ namespace Holism.DatabaseUpdater
 {
     public class TableHelper
     {
-        public void CreateTables(Database database)
+        public static void CreateTables(Database database)
         {
             var connectionString = Config.GetConnectionString(database.Name);
             foreach(var table in database.Tables)
             {
                 try
                 {
-                     CreateTable(connectionString, table);
+                    CreateTable(connectionString, table);
+                    ColumnHelper.CreateColumns(connectionString, table);
                 }
                 catch (Exception ex)
                 {
@@ -21,7 +22,7 @@ namespace Holism.DatabaseUpdater
             }
         }
 
-        public void CreateTable(string connectionString, Table table)
+        public static void CreateTable(string connectionString, Table table)
         {
             var query = @$"
             if not exists (select * from sys.tables where [name] = '{table.Name}')
@@ -33,7 +34,6 @@ namespace Holism.DatabaseUpdater
             end
             ";
             Holism.DataAccess.Database.Open(connectionString).Run(query);
-            ColumnHelper.CreateColumns(connectionString, table);
         }
     }
 }

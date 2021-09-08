@@ -1,5 +1,6 @@
 using Holism.Framework;
 using Holism.DataAccess;
+using Holism.Generation;
 using System.Collections.Generic;
 
 namespace Holism.DatabaseUpdater
@@ -22,7 +23,7 @@ namespace Holism.DatabaseUpdater
                     {
                         Name = "Order",
                         SqlType = "int",
-                        Nullable = true
+                        IsNullable = true
                     });
                 }
                 else 
@@ -59,12 +60,12 @@ namespace Holism.DatabaseUpdater
                 if not exists (select * from sys.columns where [object_id] in (select [object_id] from sys.tables where [name] = '{tableName}') and [name] = '{column.Name}')
                 begin
                     alter table [{tableName}]
-                    add [{column.Name}] {GetColumnSqlType(column)} {(column.Nullable ? "null" : "not null")}
+                    add [{column.Name}] {GetColumnSqlType(column)} {(column.IsNullable ? "null" : "not null")}
                 end
                 else
                 begin
                     alter table [{tableName}]
-                    alter column [{column.Name}] {GetColumnSqlType(column)} {(column.Nullable? "null" : "not null")}
+                    alter column [{column.Name}] {GetColumnSqlType(column)} {(column.IsNullable? "null" : "not null")}
                 end
             ";
             Holism.DataAccess.Database.Open(connectionString).Run(query);

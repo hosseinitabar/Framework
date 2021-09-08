@@ -2,6 +2,7 @@
 using Holism.Framework;
 using System.IO;
 using Holism.Validation;
+using Holism.Generation;
 
 namespace Holism.DatabaseUpdater
 {

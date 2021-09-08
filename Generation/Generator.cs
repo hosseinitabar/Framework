@@ -35,9 +35,17 @@ namespace Holism.Generation
     {
         protected static string ConnectionString { get; set; }
 
-        public Generator(string connectionString)
+        public static string OrganizationPrefix { get; set; }
+
+        public static string Organization { get; set; }
+
+        public static string Repository { get; set; }
+
+        public static string RepositoryPath { get; set; }
+
+        public Generator()
         {
-            ConnectionString = connectionString;
+            ConnectionString = Config.GetConnectionString(Repository);
             FetchTables();
             FetchColumns();
             FetchUniqueKeys();

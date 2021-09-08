@@ -25,6 +25,10 @@
       <HintPath>/HolismDotNet/Framework/Packages/Holism.DataAccess.dll</HintPath>
       <Private>True</Private>
     </Reference>
+    <Reference Include="Holism.Generation">
+      <HintPath>/HolismDotNet/Framework/Packages/Holism.Generation.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
   </ItemGroup>
 
   <Import Project="/HolismDotNet/Framework/Reusable.targets" />

@@ -4,8 +4,8 @@
 
   <PropertyGroup>
     <OutputType>Exe</OutputType>
-    <AssemblyName>Holism.DatabaseUpdater</AssemblyName>
-    <RootNamespace>Holism.DatabaseUpdater</RootNamespace>
+    <AssemblyName>Holism.DatabaseGenerator</AssemblyName>
+    <RootNamespace>Holism.DatabaseGenerator</RootNamespace>
   </PropertyGroup>
 
   <ItemGroup>

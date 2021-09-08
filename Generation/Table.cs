@@ -61,5 +61,17 @@ namespace Holism.Generation
         public List<Index> Indexes { get; set; }
 
         public string GeneratedCode { get; set; }
+
+        public List<UniqueKey> UniqueKeys { get; set; }
+        
+        public bool IsView { get; set; }
+
+        public bool HasUniqueKeys
+        {
+            get
+            {
+                return UniqueKeys.Count > 0;
+            }
+        }
     }
 }

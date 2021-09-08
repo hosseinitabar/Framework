@@ -16,6 +16,10 @@
       <HintPath>/HolismDotNet/Framework/Packages/Holism.Validation.dll</HintPath>
       <Private>True</Private>
     </Reference>
+    <Reference Include="Holism.DataAccess">
+      <HintPath>/HolismDotNet/Framework/Packages/Holism.DataAccess.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
   </ItemGroup>
 
   <Import Project="/HolismDotNet/Framework/Reusable.targets" />

@@ -1,4 +1,4 @@
-namespace Holism.DatabaseUpdater
+namespace Holism.Generation
 {
     public class ForeignKey
     {

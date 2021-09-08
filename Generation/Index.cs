@@ -1,6 +1,6 @@
 using System.Collections.Generic;
 
-namespace Holism.DatabaseUpdater
+namespace Holism.Generation
 {
     public class Index
     {

@@ -8,12 +8,12 @@ namespace Holism.ModelGenerator
     {
         public static void Main(string[] args)
         {
-            args = [
+            args = new string[] {
                 "/HolismDotNet/Ticketing",
                 "HolismDotNet",
                 "Holism",
                 "Ticketing"
-            ];
+            };
             if (args.Length != 4)
             {
                 Logger.LogWarning("Wrong arguments are specified for the model generator");

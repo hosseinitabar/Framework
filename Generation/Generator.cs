@@ -41,7 +41,7 @@ namespace Holism.Generation
 
         public void PostProcessDatabaseJson()
         {
-            foreach (var table in tables)
+            foreach (var table in Tables)
             {
                 PostProcessTable(table);
             }
@@ -78,9 +78,9 @@ namespace Holism.Generation
 
         public abstract List<Table> Generate();
 
-        protected string PrepareOutputFolder(string path)
+        protected string PrepareOutputFolder(string directory)
         {
-            var outputFolder = Config.ExpandEnvironmentVariables(path);
+            var outputFolder = $"/{Organization}/{Repository}/{directory}";
             if (Directory.Exists(outputFolder))
             {
                 Directory.Delete(outputFolder, true);

@@ -4,13 +4,33 @@ namespace Holism.Generation
     {
         public string Name { get; set; }
 
-        public string Type { set; set; }
+        public string Type { get; set; }
 
         public string DotNetType
         {
             get
             {
-                return Type;
+                if (Name.EndsWith("Guid"))
+                {
+                    return "Guid";
+                }
+                if (Name.EndsWith("Id"))
+                {
+                    return "long";
+                }
+                if (Name.Contains("Date"))
+                {
+                    return "DateTime";
+                }
+                if (Type == "int")
+                {
+                    return "int";
+                }
+                if (Type == null)
+                {
+                    return "object";
+                }
+                return "string";
             }
         }
 

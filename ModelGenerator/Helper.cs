@@ -16,9 +16,22 @@ namespace Holism.ModelGenerator
         {
             foreach (var table in Tables)
             {
-                table.GeneratedCode = GenerateClassForTable(table);
+                if (table.IsEnum)
+                {
+                    table.GeneratedCode = GenerateEnumForTable(table);
+                }
+                else
+                {
+                    table.GeneratedCode = GenerateClassForTable(table);
+                }
             }
             return Tables;
+        }
+
+        private string GenerateEnumForTable(Table table)
+        {
+            var @enum = @$"this is enum for {table.Name}";
+            return @enum;
         }
 
         private string GenerateClassForTable(Table table)

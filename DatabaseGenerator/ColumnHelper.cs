@@ -11,22 +11,7 @@ namespace Holism.DatabaseUpdater
         {
             if (table.Columns == null)
             {
-                if (table.IsEnum)
-                {
-                    table.Columns = new List<Column>();
-                    table.Columns.Add(new Column
-                    {
-                        Name = "Key",
-                        SqlType = "varchar(100)"
-                    });
-                    table.Columns.Add(new Column
-                    {
-                        Name = "Order",
-                        SqlType = "int",
-                        IsNullable = true
-                    });
-                }
-                else 
+                if (!table.IsEnum)
                 {
                     throw new ClientException($"Columns are not defined for table {table.Name}");
                 }
@@ -69,27 +54,6 @@ namespace Holism.DatabaseUpdater
                 end
             ";
             Holism.DataAccess.Database.Open(connectionString).Run(query);
-        }
-
-        public static string GetColumnSqlType(Column column)
-        {
-            if (column.SqlType.IsSomething())
-            {
-                return column.SqlType;
-            }
-            if (column.Name.EndsWith("Guid"))
-            {
-                return "uniqueidentifier";
-            }
-            if (column.Name.EndsWith("Id"))
-            {
-                return "bigint";
-            }
-            if (column.Name.Contains("Date"))
-            {
-                return "datetime";
-            }
-            return "nvarchar(400)";
         }
     }
 }

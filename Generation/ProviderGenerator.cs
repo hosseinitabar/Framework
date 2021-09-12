@@ -13,7 +13,7 @@ using System.Threading;
 
 namespace Holism.Generation
 {
-    public abstract class Generator
+    public abstract class ProviderGenerator
     {
         public static string OrganizationPrefix { get; set; }
 
@@ -25,17 +25,7 @@ namespace Holism.Generation
 
         public Database Database { get; private set; }
 
-        public abstract List<Table> Generate();   
-
-        public List<Table> Tables 
-        { 
-            get 
-            {
-                return Database.Tables;
-            }
-        }
-        
-        public Generator()
+        public ProviderGenerator()
         {
             var databaseJsonFile = Path.Combine(RepositoryPath, "Database.json");
             if (!File.Exists(databaseJsonFile))
@@ -48,34 +38,6 @@ namespace Holism.Generation
                 throw new ServerException($"Database.json does not containe valid JSON in {RepositoryPath}");
             }
             Database = databaseJson.Deserialize<Database>();
-            PostProcessDatabaseJson();
-        }
-
-        public void PostProcessDatabaseJson()
-        {
-            foreach (var table in Tables)
-            {
-                PostProcessTable(table);
-            }
-        }
-
-        public void PostProcessTable(Table table)
-        {
-            if (table.IsEnum) 
-            {
-                table.Columns = new List<Column>();
-                table.Columns.Add(new Column
-                {
-                    Name = "Key",
-                    Type = "string"
-                });
-                table.Columns.Add(new Column
-                {
-                    Name = "Order",
-                    Type = "int",
-                    IsNullable = true
-                });
-            }
         }
 
         protected string PrepareOutputFolder(string directory)
@@ -88,6 +50,22 @@ namespace Holism.Generation
             }
             return outputFolder;
         }
+
+        protected string PrepareOutputFile(string filename, string directory)
+        {
+            var outputFolder= $"/{Organization}/{Repository}/{directory}";
+            var targetDirectory= $"/{Organization}/{Repository}/{directory}/{filename}";
+            if (File.Exists(targetDirectory))
+            {
+                File.Delete(targetDirectory);
+            }
+            else if (!File.Exists(outputFolder))
+            {
+                Directory.CreateDirectory(outputFolder);
+            }
+            return outputFolder;
+        }
+
 
         public static string GetNamespaceDeclaration(string @namespace)
         {
@@ -118,7 +96,7 @@ namespace Holism.Generation
             return "";
         }
 
-        protected void TrySave(Table model, string targetPath, string targetDirectory)
+        protected void TrySave(string contentOfClass, string targetPath, string targetDirectory)
         {
             var retryCount = 0;
             bool isSaved = false;
@@ -130,7 +108,7 @@ namespace Holism.Generation
                     {
                         Directory.CreateDirectory(targetDirectory);
                     }
-                    File.WriteAllText(targetPath, model.GeneratedCode);
+                    File.WriteAllText(targetPath, contentOfClass);
                     isSaved = true;
                 }
                 catch (Exception)

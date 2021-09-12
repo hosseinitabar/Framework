@@ -23,6 +23,8 @@ namespace Holism.Generation
 
         public static string RepositoryPath { get; set; }
 
+        public Database Database { get; private set; }
+
         public Generator()
         {
             var databaseJsonFile = Path.Combine(RepositoryPath, "Database.json");
@@ -65,8 +67,6 @@ namespace Holism.Generation
                 });
             }
         }
-
-        public Database Database { get; private set; }
 
         public List<Table> Tables 
         { 
